@@ -1,0 +1,21 @@
+*** Settings ***
+Documentation  The case is to do file behavior test  in cost-effective way
+Suite Setup  Connect to SUT
+Suite Teardown  Disconnect from SUT
+Test Setup  Connect to SUT
+Test teardown  Disconnect from SUT
+Force Tags  owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req
+Resource  None
+Library  None
+*** Test Cases ***  
+file behavior  [Setup]  Connect to SUT
+  state should be  zero_file
+  create  ${filename}
+  state should be  one_selected_file
+  invert_selection  ${filename}
+  state should be  one_unselected_file
+  invert_selection  ${filename}
+  state should be  one_selected_file
+  delete  ${filename}
+  state should be  zero_file
+  invert_selection  ${filename}

@@ -1,0 +1,13 @@
+*** Settings ***
+Documentation  The case is to change unit state in all kinds of states
+Suite Setup  Connect to SUT
+Suite Teardown  Disconnect from SUT
+Test Setup  Clear Test Env And Start Moni Msg
+Test teardown  get alarm recovery history log bblog and message after test
+Force Tags  owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req
+Resource  IpaMml.html
+Library  state_change_library
+*** Test Cases ***  step  unit_type
+change unit State 
+    [Tags]  element-RNC  SFUType-SF20H  Pairwise 
+    Verify Unit State Change  DMCU

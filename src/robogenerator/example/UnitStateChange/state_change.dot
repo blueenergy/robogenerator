@@ -1,0 +1,30 @@
+digraph state_change {
+
+  // Nodes
+  te_re_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  bl_re_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  te_ex_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  bl_id_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  se_nh_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  se_ou_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  wo_re_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  wo_ex_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+
+  // Transitions
+  wo_ex_state -> bl_id_state [ label="change_unit_state(('${unit_type}', 'BL'),)", tooltip="change_unit_state(('${unit_type}', 'BL'),)" ]
+  wo_ex_state -> te_re_state [ label="change_unit_state(('${unit_type}', 'TE'),)", tooltip="change_unit_state(('${unit_type}', 'TE'),)" ]
+  bl_id_state -> te_ex_state [ label="change_unit_state(('${unit_type}', 'TE'),)", tooltip="change_unit_state(('${unit_type}', 'TE'),)" ]
+  bl_id_state -> wo_ex_state [ label="change_unit_state(('${unit_type}', 'WO'),)", tooltip="change_unit_state(('${unit_type}', 'WO'),)" ]
+  bl_id_state -> bl_re_state [ label="restart_unit('${unit_type}',)", tooltip="restart_unit('${unit_type}',)" ]
+  bl_re_state -> te_re_state [ label="change_unit_state(('${unit_type}', 'TE'),)", tooltip="change_unit_state(('${unit_type}', 'TE'),)" ]
+  bl_re_state -> bl_id_state [ label="wait_unit_in_required_state(('${unit_type}', 'BL_ID'),)", tooltip="wait_unit_in_required_state(('${unit_type}', 'BL_ID'),)" ]
+  te_ex_state -> se_ou_state [ label="change_unit_state(('${unit_type}', 'SE'),)", tooltip="change_unit_state(('${unit_type}', 'SE'),)" ]
+  te_ex_state -> wo_re_state [ label="change_unit_state(('${unit_type}', 'WO'),)", tooltip="change_unit_state(('${unit_type}', 'WO'),)" ]
+  se_ou_state -> se_nh_state [ label="change_unit_state(('${unit_type}', 'SE'),)", tooltip="change_unit_state(('${unit_type}', 'SE'),)" ]
+  se_ou_state -> te_re_state [ label="change_unit_state(('${unit_type}', 'TE'),)", tooltip="change_unit_state(('${unit_type}', 'TE'),)" ]
+  se_nh_state -> se_ou_state [ label="change_unit_state(('${unit_type}', 'SE'),)", tooltip="change_unit_state(('${unit_type}', 'SE'),)" ]
+  te_re_state -> se_ou_state [ label="change_unit_state(('${unit_type}', 'SE'),)", tooltip="change_unit_state(('${unit_type}', 'SE'),)" ]
+  te_re_state -> te_ex_state [ label="wait_unit_in_required_state(('${unit_type}', 'TE-EX'),)", tooltip="wait_unit_in_required_state(('${unit_type}', 'TE-EX'),)" ]
+  wo_re_state -> te_re_state [ label="change_unit_state(('${unit_type}', 'TE'),)", tooltip="change_unit_state(('${unit_type}', 'TE'),)" ]
+  wo_re_state -> wo_ex_state [ label="wait_unit_in_required_state(('${unit_type}', 'WO-EX'),)", tooltip="wait_unit_in_required_state(('${unit_type}', 'WO-EX'),)" ]
+}

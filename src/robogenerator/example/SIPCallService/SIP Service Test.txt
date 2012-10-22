@@ -1,0 +1,10 @@
+*** Settings ***
+Documentation  The case is to do SIP Service test  in cost-effective way
+Suite Setup  Connect to SUT
+Suite Teardown  Disconnect from SUT
+Test Setup  None
+Test teardown  None
+Force Tags  owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req
+Resource  None
+Library  sip_service_lib.py
+*** Test Cases ***  

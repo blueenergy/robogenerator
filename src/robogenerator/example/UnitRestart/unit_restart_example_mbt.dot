@@ -1,0 +1,8 @@
+digraph unit_restart_example_mbt {
+
+  // Nodes
+  idle_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=lightgray ]
+
+  // Transitions
+  idle_state -> idle_state [ label="restart_unit_with_mode(('unit_type', 'state', 'restart_mode'),)", tooltip="restart_unit_with_mode(('unit_type', 'state', 'restart_mode'),)" ]
+}

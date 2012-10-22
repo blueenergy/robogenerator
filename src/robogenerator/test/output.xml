@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20121015 13:50:18.445" generator="Robot 2.7.4 (Python 2.7.3 on win32)">
+<suite source="D:\TestAutomation\TestCase\DATest\SS\SSAreaCI\src\robogenerator\test\Robogenerator_acceptance_test.html" id="s1" name="Robogenerator acceptance test">
+<test id="s1-t1" timeout="" name="Robogenerator_test_case">
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\FileBehavior\\file_behavior</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>ShortestPath</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:18.511" level="INFO">Running command 'python ../runner.py ..\example\FileBehavior\file_behavior --strategy ShortestPath 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:19.261" level="INFO">python ../runner.py ..\example\FileBehavior\file_behavior --strategy ShortestPath</msg>
+<msg timestamp="20121015 13:50:19.262" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:19.262" level="INFO">${output} =  All possibles transitions to be tested is 8
+[('zero_file', ('invert_selection', ('',)), 'zero_file'), ('zero_file', ('create', ('${filename}',)), 'one_selected_file'), ('zero_file', ('select_all', ('...</msg>
+<status status="PASS" endtime="20121015 13:50:19.261" starttime="20121015 13:50:18.509"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.262" level="INFO"> All possibles transitions to be tested is 8
+[('zero_file', ('invert_selection', ('',)), 'zero_file'), ('zero_file', ('create', ('${filename}',)), 'one_selected_file'), ('zero_file', ('select_all', ('',)), 'zero_file'), ('one_selected_file', ('invert_selection', ('',)), 'one_unselected_file'), ('one_selected_file', ('delete', ('${filename}',)), 'zero_file'), ('one_selected_file', ('select_all', ('',)), 'one_selected_file'), ('one_unselected_file', ('invert_selection', ('',)), 'one_selected_file'), ('one_unselected_file', ('select_all', ('',)), 'one_selected_file')]
+['zero_file']
+['zero_file']
+ All possibles paths to be tested is 15
+['zero_file', 'one_selected_file', 'one_unselected_file']
+*******************
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;1', 'from', '2', 'to', '1']
+['Take', 'arc', '1-&gt;1', 'from', '1', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;1', 'from', '2', 'to', '1']
+['Take', 'arc', '1-&gt;0', 'from', '1', 'to', '0']
+['Take', 'arc', '0-&gt;0', 'from', '0', 'to', '0']
+['Take', 'arc', '0-&gt;0', 'from', '0', 'to', '0']
+['Cost', '=', '9.0']
+9
+[('zero_file', ('create', ('${filename}',)), 'one_selected_file'), ('one_selected_file', ('invert_selection', ('',)), 'one_unselected_file'), ('one_unselected_file', ('select_all', ('',)), 'one_selected_file'), ('one_selected_file', ('select_all', ('',)), 'one_selected_file'), ('one_selected_file', ('invert_selection', ('',)), 'one_unselected_file'), ('one_unselected_file', ('invert_selection', ('',)), 'one_selected_file'), ('one_selected_file', ('delete', ('${filename}',)), 'zero_file'), ('zero_file', ('select_all', ('',)), 'zero_file'), ('zero_file', ('invert_selection', ('',)), 'zero_file')]
+Shortest path to cover all transition has 9 transitions to cover
+('zero_file', ('create', ('${filename}',)), 'one_selected_file')
+('one_selected_file', ('invert_selection', ('',)), 'one_unselected_file')
+('one_unselected_file', ('select_all', ('',)), 'one_selected_file')
+('one_selected_file', ('select_all', ('',)), 'one_selected_file')
+('one_selected_file', ('invert_selection', ('',)), 'one_unselected_file')
+('one_unselected_file', ('invert_selection', ('',)), 'one_selected_file')
+('one_selected_file', ('delete', ('${filename}',)), 'zero_file')
+('zero_file', ('select_all', ('',)), 'zero_file')
+('zero_file', ('invert_selection', ('',)), 'zero_file')
+The case is to do file behavior test  in cost-effective way
+***********
+{'filename': ['test_file']}
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:19.263" starttime="20121015 13:50:19.262"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.263" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:19.263" starttime="20121015 13:50:19.263"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:19.264" starttime="20121015 13:50:19.264"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:19.264" starttime="20121015 13:50:18.509"></status>
+</kw>
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\UnitRestart\\unit_restart_example_1</arg>
+<arg>random</arg>
+<arg>1</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.267" level="INFO">Running command 'python ../runner.py ..\example\UnitRestart\unit_restart_example_1 -g random -t 1 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:19.456" level="INFO">python ../runner.py ..\example\UnitRestart\unit_restart_example_1 -g random -t 1</msg>
+<msg timestamp="20121015 13:50:19.456" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:19.456" level="INFO">${output} = The case is to Restart all kinds of units with required state
+
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:19.456" starttime="20121015 13:50:19.265"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.457" level="INFO">The case is to Restart all kinds of units with required state
+
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:19.457" starttime="20121015 13:50:19.457"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.458" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:19.459" starttime="20121015 13:50:19.458"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:19.459" starttime="20121015 13:50:19.459"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:19.459" starttime="20121015 13:50:19.265"></status>
+</kw>
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\UnitRestart\\unit_restart_example_mbt</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>DataDriven</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.462" level="INFO">Running command 'python ../runner.py ..\example\UnitRestart\unit_restart_example_mbt --strategy DataDriven 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:19.646" level="INFO">python ../runner.py ..\example\UnitRestart\unit_restart_example_mbt --strategy DataDriven</msg>
+<msg timestamp="20121015 13:50:19.646" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:19.646" level="INFO">${output} =  All possibles transitions to be tested is 1
+[('idle_state', ('restart_unit_with_mode', ('unit_type', 'state', 'restart_mode')), 'idle_state')]
+['idle_state']
+['idle_state']
+ All possibles paths to be...</msg>
+<status status="PASS" endtime="20121015 13:50:19.646" starttime="20121015 13:50:19.461"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.647" level="INFO"> All possibles transitions to be tested is 1
+[('idle_state', ('restart_unit_with_mode', ('unit_type', 'state', 'restart_mode')), 'idle_state')]
+['idle_state']
+['idle_state']
+ All possibles paths to be tested is 1
+The case is to Restart all kinds of units with required state
+
+{'unit_type': ['NPGEP', 'ICSU'], 'restart_mode': ['OPT', 'TOT'], 'state': ['WO-EX', 'SP-EX']}
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:19.647" starttime="20121015 13:50:19.646"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.647" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:19.647" starttime="20121015 13:50:19.647"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:19.648" starttime="20121015 13:50:19.647"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:19.648" starttime="20121015 13:50:19.460"></status>
+</kw>
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\UnitStateChange\\state_change</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>ShortestPath</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.650" level="INFO">Running command 'python ../runner.py ..\example\UnitStateChange\state_change --strategy ShortestPath 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:19.983" level="INFO">python ../runner.py ..\example\UnitStateChange\state_change --strategy ShortestPath</msg>
+<msg timestamp="20121015 13:50:19.983" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:19.983" level="INFO">${output} =  All possibles transitions to be tested is 16
+[('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state'), ('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0...</msg>
+<status status="PASS" endtime="20121015 13:50:19.983" starttime="20121015 13:50:19.649"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.984" level="INFO"> All possibles transitions to be tested is 16
+[('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state'), ('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_ex_state'), ('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_ex_state'), ('bl_id_state', ('restart_unit', ('DMCU-0',)), 'bl_re_state'), ('bl_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('bl_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'BL_ID')), 'bl_id_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state'), ('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_nh_state'), ('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('se_nh_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('te_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state'), ('wo_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state')]
+['wo_ex_state']
+['wo_ex_state']
+ All possibles paths to be tested is 20
+['wo_ex_state', 'bl_id_state', 'bl_re_state', 'te_ex_state', 'se_ou_state', 'se_nh_state', 'te_re_state', 'wo_re_state']
+*******************
+['Take', 'arc', '0-&gt;6', 'from', '0', 'to', '6']
+['Take', 'arc', '6-&gt;3', 'from', '6', 'to', '3']
+['Take', 'arc', '3-&gt;7', 'from', '3', 'to', '7']
+['Take', 'arc', '7-&gt;0', 'from', '7', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;6', 'from', '2', 'to', '6']
+['Take', 'arc', '6-&gt;3', 'from', '6', 'to', '3']
+['Take', 'arc', '3-&gt;7', 'from', '3', 'to', '7']
+['Take', 'arc', '7-&gt;6', 'from', '7', 'to', '6']
+['Take', 'arc', '6-&gt;4', 'from', '6', 'to', '4']
+['Take', 'arc', '4-&gt;6', 'from', '4', 'to', '6']
+['Take', 'arc', '6-&gt;3', 'from', '6', 'to', '3']
+['Take', 'arc', '3-&gt;7', 'from', '3', 'to', '7']
+['Take', 'arc', '7-&gt;0', 'from', '7', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;1', 'from', '2', 'to', '1']
+['Take', 'arc', '1-&gt;3', 'from', '1', 'to', '3']
+['Take', 'arc', '3-&gt;4', 'from', '3', 'to', '4']
+['Take', 'arc', '4-&gt;5', 'from', '4', 'to', '5']
+['Take', 'arc', '5-&gt;4', 'from', '5', 'to', '4']
+['Take', 'arc', '4-&gt;6', 'from', '4', 'to', '6']
+['Take', 'arc', '6-&gt;3', 'from', '6', 'to', '3']
+['Take', 'arc', '3-&gt;7', 'from', '3', 'to', '7']
+['Take', 'arc', '7-&gt;0', 'from', '7', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;0', 'from', '1', 'to', '0']
+['Cost', '=', '28.0']
+28
+[('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state'), ('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state'), ('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state'), ('bl_id_state', ('restart_unit', ('DMCU-0',)), 'bl_re_state'), ('bl_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state'), ('wo_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('te_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state'), ('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state'), ('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state'), ('bl_id_state', ('restart_unit', ('DMCU-0',)), 'bl_re_state'), ('bl_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'BL_ID')), 'bl_id_state'), ('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_ex_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_nh_state'), ('se_nh_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state'), ('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state'), ('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state'), ('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state'), ('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state'), ('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state'), ('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_ex_state')]
+Shortest path to cover all transition has 28 transitions to cover
+('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state')
+('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state')
+('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state')
+('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state')
+('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state')
+('bl_id_state', ('restart_unit', ('DMCU-0',)), 'bl_re_state')
+('bl_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state')
+('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state')
+('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state')
+('wo_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state')
+('te_re_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state')
+('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state')
+('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state')
+('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state')
+('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state')
+('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state')
+('bl_id_state', ('restart_unit', ('DMCU-0',)), 'bl_re_state')
+('bl_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'BL_ID')), 'bl_id_state')
+('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_ex_state')
+('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state')
+('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_nh_state')
+('se_nh_state', ('change_unit_state_and_check_result', ('DMCU-0', 'SE')), 'se_ou_state')
+('se_ou_state', ('change_unit_state_and_check_result', ('DMCU-0', 'TE')), 'te_re_state')
+('te_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'TE-EX')), 'te_ex_state')
+('te_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_re_state')
+('wo_re_state', ('wait_unit_in_required_state', ('DMCU-0', 'WO-EX')), 'wo_ex_state')
+('wo_ex_state', ('change_unit_state_and_check_result', ('DMCU-0', 'BL')), 'bl_id_state')
+('bl_id_state', ('change_unit_state_and_check_result', ('DMCU-0', 'WO')), 'wo_ex_state')
+The case is to change unit state in all kinds of states
+***********
+{'unit_type': 'DMCU-0', 'element_type': 'RNC', 'sfutype': 'SF20H'}
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:19.984" starttime="20121015 13:50:19.984"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.985" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:19.985" starttime="20121015 13:50:19.985"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:19.985" starttime="20121015 13:50:19.985"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:19.985" starttime="20121015 13:50:19.648"></status>
+</kw>
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\SIPCallService\\SIP_Call_Service</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>ShortestPath</arg>
+<arg>${EMPTY}</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:19.996" level="INFO">Running command 'python ../runner.py ..\example\SIPCallService\SIP_Call_Service --strategy ShortestPath 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:20.519" level="INFO">python ../runner.py ..\example\SIPCallService\SIP_Call_Service --strategy ShortestPath</msg>
+<msg timestamp="20121015 13:50:20.520" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:20.520" level="INFO">${output} =  All possibles transitions to be tested is 13
+[('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ...</msg>
+<status status="PASS" endtime="20121015 13:50:20.520" starttime="20121015 13:50:19.995"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:20.520" level="INFO"> All possibles transitions to be tested is 13
+[('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${TIMEOUTB}',)), 'terminating_state'), ('calling_state', ('receive_message', ('${TIMEOUTA}',)), 'terminating_state'), ('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state'), ('calling_state', ('receive_message', ('${REJECT}',)), 'cancel_state'), ('terminating_state', ('receive_message', ('${200_BYE}',)), 'idle_state'), ('cancel_state', ('receive_message', ('${200_Cancel}',)), 'wait_response_state'), ('ring_state', ('receive_message', ('${200}',)), 'ready_state'), ('ring_state', ('receive_message', ('${REJECT}',)), 'idle_state'), ('ring_state', ('receive_message', ('${CANCEL}',)), 'cancel_state'), ('ready_state', ('receive_message', ('${BYE}',)), 'idle_state'), ('wait_response_state', ('receive_message', ('${487_Invite}',)), 'idle_state')]
+['idle_state']
+['idle_state']
+ All possibles paths to be tested is 6
+['idle_state', 'init_state', 'calling_state', 'terminating_state', 'cancel_state', 'ring_state', 'ready_state', 'wait_response_state']
+*******************
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;4', 'from', '2', 'to', '4']
+['Take', 'arc', '4-&gt;7', 'from', '4', 'to', '7']
+['Take', 'arc', '7-&gt;0', 'from', '7', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;5', 'from', '2', 'to', '5']
+['Take', 'arc', '5-&gt;4', 'from', '5', 'to', '4']
+['Take', 'arc', '4-&gt;7', 'from', '4', 'to', '7']
+['Take', 'arc', '7-&gt;0', 'from', '7', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;5', 'from', '2', 'to', '5']
+['Take', 'arc', '5-&gt;6', 'from', '5', 'to', '6']
+['Take', 'arc', '6-&gt;0', 'from', '6', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;3', 'from', '2', 'to', '3']
+['Take', 'arc', '3-&gt;0', 'from', '3', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;5', 'from', '2', 'to', '5']
+['Take', 'arc', '5-&gt;0', 'from', '5', 'to', '0']
+['Take', 'arc', '0-&gt;1', 'from', '0', 'to', '1']
+['Take', 'arc', '1-&gt;2', 'from', '1', 'to', '2']
+['Take', 'arc', '2-&gt;3', 'from', '2', 'to', '3']
+['Take', 'arc', '3-&gt;0', 'from', '3', 'to', '0']
+['Cost', '=', '28.0']
+28
+[('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${REJECT}',)), 'cancel_state'), ('cancel_state', ('receive_message', ('${200_Cancel}',)), 'wait_response_state'), ('wait_response_state', ('receive_message', ('${487_Invite}',)), 'idle_state'), ('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state'), ('ring_state', ('receive_message', ('${CANCEL}',)), 'cancel_state'), ('cancel_state', ('receive_message', ('${200_Cancel}',)), 'wait_response_state'), ('wait_response_state', ('receive_message', ('${487_Invite}',)), 'idle_state'), ('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state'), ('ring_state', ('receive_message', ('${200}',)), 'ready_state'), ('ready_state', ('receive_message', ('${BYE}',)), 'idle_state'), ('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${TIMEOUTB}',)), 'terminating_state'), ('terminating_state', ('receive_message', ('${200_BYE}',)), 'idle_state'), ('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state'), ('ring_state', ('receive_message', ('${REJECT}',)), 'idle_state'), ('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state'), ('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state'), ('calling_state', ('receive_message', ('${TIMEOUTB}',)), 'terminating_state'), ('terminating_state', ('receive_message', ('${200_BYE}',)), 'idle_state')]
+Shortest path to cover all transition has 28 transitions to cover
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${REJECT}',)), 'cancel_state')
+('cancel_state', ('receive_message', ('${200_Cancel}',)), 'wait_response_state')
+('wait_response_state', ('receive_message', ('${487_Invite}',)), 'idle_state')
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state')
+('ring_state', ('receive_message', ('${CANCEL}',)), 'cancel_state')
+('cancel_state', ('receive_message', ('${200_Cancel}',)), 'wait_response_state')
+('wait_response_state', ('receive_message', ('${487_Invite}',)), 'idle_state')
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state')
+('ring_state', ('receive_message', ('${200}',)), 'ready_state')
+('ready_state', ('receive_message', ('${BYE}',)), 'idle_state')
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${TIMEOUTB}',)), 'terminating_state')
+('terminating_state', ('receive_message', ('${200_BYE}',)), 'idle_state')
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${CALL_PROCEEDING}',)), 'ring_state')
+('ring_state', ('receive_message', ('${REJECT}',)), 'idle_state')
+('idle_state', ('receive_message', ('${OFFHOOK_SIGNAL}',)), 'init_state')
+('init_state', ('receive_message', ('${CALLING_SIGNAL}',)), 'calling_state')
+('calling_state', ('receive_message', ('${TIMEOUTB}',)), 'terminating_state')
+('terminating_state', ('receive_message', ('${200_BYE}',)), 'idle_state')
+The case is to do SIP Service test  in cost-effective way
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:20.520" starttime="20121015 13:50:20.520"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:20.521" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:20.521" starttime="20121015 13:50:20.521"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:20.521" starttime="20121015 13:50:20.521"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:20.521" starttime="20121015 13:50:19.994"></status>
+</kw>
+<kw type="kw" name="execute command and check" timeout="">
+<doc></doc>
+<arguments>
+<arg>..\\example\\Volume_create_delete_function\\create_and_delete_volume_test</arg>
+<arg>random</arg>
+<arg>10</arg>
+<arg>${EMPTY}</arg>
+<arg>atdd</arg>
+</arguments>
+<kw type="kw" name="${rc}, ${output} = command_execute.Execute Command" timeout="">
+<doc></doc>
+<arguments>
+<arg>${filename}</arg>
+<arg>${algorithm}</arg>
+<arg>${case_no}</arg>
+<arg>${strategy}</arg>
+<arg>${style}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:20.523" level="INFO">Running command 'python ../runner.py ..\example\Volume_create_delete_function\create_and_delete_volume_test -g random -t 10 --strategy atdd 2&gt;&amp;1'</msg>
+<msg timestamp="20121015 13:50:20.947" level="INFO">python ../runner.py ..\example\Volume_create_delete_function\create_and_delete_volume_test -g random -t 10 --strategy atdd</msg>
+<msg timestamp="20121015 13:50:20.947" level="INFO">${rc} = 0</msg>
+<msg timestamp="20121015 13:50:20.947" level="INFO">${output} = The case is to create and delete all kinds of volumes
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:20.947" starttime="20121015 13:50:20.522"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log" timeout="">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${output}</arg>
+</arguments>
+<msg timestamp="20121015 13:50:20.948" level="INFO">The case is to create and delete all kinds of volumes
+Case Generation Succeeded</msg>
+<status status="PASS" endtime="20121015 13:50:20.948" starttime="20121015 13:50:20.948"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Be Equal As Integers" timeout="">
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<arguments>
+<arg>${rc}</arg>
+<arg>0</arg>
+</arguments>
+<msg timestamp="20121015 13:50:20.948" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20121015 13:50:20.948" starttime="20121015 13:50:20.948"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Should Contain" timeout="">
+<doc>Fails if `item1` does not contain `item2` one or more times.</doc>
+<arguments>
+<arg>${output}</arg>
+<arg>Case Generation Succeeded</arg>
+</arguments>
+<status status="PASS" endtime="20121015 13:50:20.949" starttime="20121015 13:50:20.948"></status>
+</kw>
+<status status="PASS" endtime="20121015 13:50:20.949" starttime="20121015 13:50:20.522"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>element-</tag>
+<tag>QL-</tag>
+<tag>req-PRS</tag>
+<tag>team-</tag>
+</tags>
+<status status="PASS" endtime="20121015 13:50:20.949" critical="yes" starttime="20121015 13:50:18.508"></status>
+</test>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="PASS" endtime="20121015 13:50:20.952" starttime="20121015 13:50:18.445"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="1">Critical Tests</stat>
+<stat fail="0" pass="1">All Tests</stat>
+</total>
+<tag>
+<stat info="" links="" doc="" combined="" pass="1" fail="0">QL-</stat>
+<stat info="" links="" doc="" combined="" pass="1" fail="0">element-</stat>
+<stat info="" links="" doc="" combined="" pass="1" fail="0">req-PRS</stat>
+<stat info="" links="" doc="" combined="" pass="1" fail="0">team-</stat>
+</tag>
+<suite>
+<stat fail="0" pass="1" id="s1" name="Robogenerator acceptance test">Robogenerator acceptance test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

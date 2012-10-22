@@ -1,0 +1,38 @@
+digraph ZDTFSM {
+
+  // Nodes
+  preloading [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'preloading'}" ]
+  sys_lockdown [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'sys_lockdown'}" ]
+  zdt_configuration_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'zdt_configuration_complete'}" ]
+  post_cutover_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'post_cutover_complete'}" ]
+  cutover_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'cutover_complete'}" ]
+  pre_cutover_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'pre_cutover_complete'}" ]
+  assessment_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'assessment_complete'}" ]
+  resource_balance_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'resource_balance_complete'}" ]
+  compress_complete [ style=filled, shape=ellipse, peripheries=2, fillcolor=white,
+      tooltip="{'ZDT': 'compress_complete'}" ]
+  system_idle_state [ style=filled, shape=ellipse, peripheries=2, fillcolor=lightgray,
+      tooltip="{'ZDT': 'system_idle_state'}" ]
+
+  // Transitions
+  system_idle_state -> preloading [ label="Recv('preloading_command',)", tooltip="Recv('preloading_command',)" ]
+  system_idle_state -> assessment_complete [ label="Recv('assessment_command',)", tooltip="Recv('assessment_command',)" ]
+  preloading -> assessment_complete [ label="Recv('assessment_command',)", tooltip="Recv('assessment_command',)" ]
+  assessment_complete -> sys_lockdown [ label="Recv('sys_lockdown_command',)", tooltip="Recv('sys_lockdown_command',)" ]
+  sys_lockdown -> compress_complete [ label="Recv('resource_compress_command',)", tooltip="Recv('resource_compress_command',)" ]
+  compress_complete -> zdt_configuration_complete [ label="Recv('create_zdt_command',)", tooltip="Recv('create_zdt_command',)" ]
+  zdt_configuration_complete -> pre_cutover_complete [ label="Recv('pre_cutover_complete_command',)", tooltip="Recv('pre_cutover_complete_command',)" ]
+  pre_cutover_complete -> cutover_complete [ label="Recv('cutover_command',)", tooltip="Recv('cutover_command',)" ]
+  cutover_complete -> pre_cutover_complete [ label="Recv('cutover_to_origin_command',)", tooltip="Recv('cutover_to_origin_command',)" ]
+  cutover_complete -> post_cutover_complete [ label="Recv('post_cutover_command',)", tooltip="Recv('post_cutover_command',)" ]
+  post_cutover_complete -> resource_balance_complete [ label="Recv('resource_balance_command',)", tooltip="Recv('resource_balance_command',)" ]
+  resource_balance_complete -> system_idle_state [ label="Recv('zdt_complete_command',)", tooltip="Recv('zdt_complete_command',)" ]
+}

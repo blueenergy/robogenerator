@@ -1,0 +1,67 @@
+*** Settings ***
+Documentation  The case is to change unit state in all kinds of states
+Suite Setup  Connect to SUT
+Suite Teardown  Disconnect from SUT
+Test Setup  Select One DMCU
+Test teardown  None
+Force Tags  owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req
+Resource  IpaMml.html
+Library  state_change_library.py
+*** Test Cases ***  
+change unit State   [Setup]  Select One DMCU
+  unit should be in state  DMCU-0  WO-EX
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-RE
+  wait_unit_in_required_state  DMCU-0  TE-EX
+  unit should be in state  DMCU-0  TE-EX
+  change_unit_state_and_check_result  DMCU-0  WO
+  unit should be in state  DMCU-0  WO-RE
+  wait_unit_in_required_state  DMCU-0  WO-EX
+  unit should be in state  DMCU-0  WO-EX
+  change_unit_state_and_check_result  DMCU-0  BL
+  unit should be in state  DMCU-0  BL-ID
+  restart_unit  DMCU-0
+  unit should be in state  DMCU-0  BL-RE
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-RE
+  wait_unit_in_required_state  DMCU-0  TE-EX
+  unit should be in state  DMCU-0  TE-EX
+  change_unit_state_and_check_result  DMCU-0  WO
+  unit should be in state  DMCU-0  WO-RE
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-RE
+  change_unit_state_and_check_result  DMCU-0  SE
+  unit should be in state  DMCU-0  SE-OU
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-RE
+  wait_unit_in_required_state  DMCU-0  TE-EX
+  unit should be in state  DMCU-0  TE-EX
+  change_unit_state_and_check_result  DMCU-0  WO
+  unit should be in state  DMCU-0  WO-RE
+  wait_unit_in_required_state  DMCU-0  WO-EX
+  unit should be in state  DMCU-0  WO-EX
+  change_unit_state_and_check_result  DMCU-0  BL
+  unit should be in state  DMCU-0  BL-ID
+  restart_unit  DMCU-0
+  unit should be in state  DMCU-0  BL-RE
+  wait_unit_in_required_state  DMCU-0  BL_ID
+  unit should be in state  DMCU-0  BL-ID
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-EX
+  change_unit_state_and_check_result  DMCU-0  SE
+  unit should be in state  DMCU-0  SE-OU
+  change_unit_state_and_check_result  DMCU-0  SE
+  unit should be in state  DMCU-0  SE-NH
+  change_unit_state_and_check_result  DMCU-0  SE
+  unit should be in state  DMCU-0  SE-OU
+  change_unit_state_and_check_result  DMCU-0  TE
+  unit should be in state  DMCU-0  TE-RE
+  wait_unit_in_required_state  DMCU-0  TE-EX
+  unit should be in state  DMCU-0  TE-EX
+  change_unit_state_and_check_result  DMCU-0  WO
+  unit should be in state  DMCU-0  WO-RE
+  wait_unit_in_required_state  DMCU-0  WO-EX
+  unit should be in state  DMCU-0  WO-EX
+  change_unit_state_and_check_result  DMCU-0  BL
+  unit should be in state  DMCU-0  BL-ID
+  change_unit_state_and_check_result  DMCU-0  WO

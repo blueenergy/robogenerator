@@ -1,0 +1,27 @@
+digraph SIP_Call_Service {
+
+  // Nodes
+  idle_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=lightgray ]
+  terminating_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  ready_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  ring_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  cancel_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  init_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  calling_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+  wait_response_state [ style=filled, shape=ellipse, peripheries=1, fillcolor=white ]
+
+  // Transitions
+  idle_state -> init_state [ label="receive_message(('${OFFHOOK_SIGNAL}',),)", tooltip="receive_message(('${OFFHOOK_SIGNAL}',),)" ]
+  init_state -> calling_state [ label="receive_message(('${CALLING_SIGNAL}',),)", tooltip="receive_message(('${CALLING_SIGNAL}',),)" ]
+  calling_state -> terminating_state [ label="receive_message(('${TIMEOUTB}',),)", tooltip="receive_message(('${TIMEOUTB}',),)" ]
+  calling_state -> terminating_state [ label="receive_message(('${TIMEOUTA}',),)", tooltip="receive_message(('${TIMEOUTA}',),)" ]
+  calling_state -> ring_state [ label="receive_message(('${CALL_PROCEEDING}',),)", tooltip="receive_message(('${CALL_PROCEEDING}',),)" ]
+  calling_state -> cancel_state [ label="receive_message(('${REJECT}',),)", tooltip="receive_message(('${REJECT}',),)" ]
+  terminating_state -> idle_state [ label="receive_message(('${200_BYE}',),)", tooltip="receive_message(('${200_BYE}',),)" ]
+  cancel_state -> wait_response_state [ label="receive_message(('${200_Cancel}',),)", tooltip="receive_message(('${200_Cancel}',),)" ]
+  ring_state -> ready_state [ label="receive_message(('${200}',),)", tooltip="receive_message(('${200}',),)" ]
+  ring_state -> idle_state [ label="receive_message(('${REJECT}',),)", tooltip="receive_message(('${REJECT}',),)" ]
+  ring_state -> cancel_state [ label="receive_message(('${CANCEL}',),)", tooltip="receive_message(('${CANCEL}',),)" ]
+  ready_state -> idle_state [ label="receive_message(('${BYE}',),)", tooltip="receive_message(('${BYE}',),)" ]
+  wait_response_state -> idle_state [ label="receive_message(('${487_Invite}',),)", tooltip="receive_message(('${487_Invite}',),)" ]
+}

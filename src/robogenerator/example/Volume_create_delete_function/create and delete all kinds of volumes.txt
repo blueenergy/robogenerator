@@ -1,0 +1,12 @@
+*** Settings ***
+Documentation  The case is to create and delete all kinds of volumes
+Suite Setup  Connect to System
+Suite Teardown  Disconnect from System
+Test Setup  None
+Test teardown  None
+Force Tags  owner-***  team-*  phase-RT  
+Resource  None
+Library  None
+*** Test Cases ***  
+create and delete volume with different parameters1
+  create and delete volume test  ${type}  ${size}  ${format_method}  ${file_system}  ${cluster_size}  ${compression}

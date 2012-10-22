@@ -1,0 +1,23 @@
+*** Settings ***
+Documentation  The case is to Restart all kinds of units with required state
+
+Suite Setup  Connect to SUT
+Suite Teardown  Disconnect from SUT
+Test Setup  Clear Test Env And Start Moni Msg
+Test teardown  get alarm recovery history log bblog and message after test
+Force Tags  owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req
+Resource  IpaMml.html
+Library  /resources/unit_restart_lib.py
+*** Test Cases ***  step
+restart unit in required state with required mode
+    [Tags]  Pairwise 
+    restart unit with mode  NPGEP  WO-EX  OPT
+restart unit in required state with required mode
+    [Tags]  Pairwise 
+    restart unit with mode  ICSU  WO-EX  TOT
+restart unit in required state with required mode
+    [Tags]  Pairwise 
+    restart unit with mode  ICSU  SP-EX  OPT
+restart unit in required state with required mode
+    [Tags]  Pairwise 
+    restart unit with mode  NPGEP  SP-EX  TOT
