@@ -1,7 +1,7 @@
 from distutils.core import setup
 from os.path import join
 import os
-SCRIPTS = ['robogenerator']
+SCRIPTS = ['robogenerator','robograph']
 SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
 if os.sep == '\\':
     SCRIPTS += [s+'.bat' for s in SCRIPTS]
