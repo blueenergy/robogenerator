@@ -1,4 +1,3 @@
-from dynamic_transition import generate_sequence_map
 documentation ='''The case is to do Trial Service test  in cost-effective way'''
 suite_setup ='Connect to SUT'
 suite_teardown='Disconnect from SUT'
