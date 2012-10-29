@@ -123,6 +123,18 @@ class StateMachineCaseGenerator(CaseGenerator):
         if transition not in self.tested_transitions:
             self.tested_transitions.append(transition)
             
+    def get_tested_transitions(self):
+        return self.tested_transitions
+    
+    def get_tested_nodes(self):
+        tested_nodes =[]
+
+        for transition in self.tested_transitions:
+            tested_nodes.append(transition[0])
+            tested_nodes.append(transition[-1])
+        return set(tested_nodes)
+            
+            
     def print_diff_with_all_transitions(self,tested_transitions):
         print tested_transitions
         print self.all_transitions
@@ -177,7 +189,8 @@ class StateMachineCaseGenerator(CaseGenerator):
             self.optimized_transitions = compute_cpp_optimal_route(self.state_name_list,self.all_transitions)
             print "Shortest path to cover all transition has %s transitions to cover" % len(self.optimized_transitions)
             for transition in self.optimized_transitions:
-                print transition
+                #print transition
+                self.record_tested_transitions(transition)
             self.generate_mbt_case_by_transitions(output_filename,self.optimized_transitions)
         elif strategy in ['StateCoverage','ActionNameCoverage','DynamicRandom']:
             self.generate_dynamic_mbt_style_case(output_filename,case_count,nsteps,strategy)

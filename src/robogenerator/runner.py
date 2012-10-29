@@ -1,8 +1,9 @@
+from __future__ import with_statement
 import sys
 import os
-from __future__ import with_statement
 from generator import StateMachineCaseGenerator,DataDrivenCaseGenerator
 from model import CaseModel,DataModel,StateModel
+from robograph import generate_state_machine_graph
 
 class RoboMachineParsingException(Exception):
     pass
@@ -87,6 +88,10 @@ def main():
                                'smart-random = generate test randomly and\n'+ 
                                "don't repeat case already tested in last several rounds\n")
     
+    parser.add_argument('--graph',
+                         type=str, default=None,choices=['yes','no'],
+                         help='''directory in server to store tested combinations''')
+    
     args = parser.parse_args()
 
     if args.host:
@@ -104,6 +109,7 @@ def main():
     case_count = args.tests_max
     percentage = args.percentage
     case_style = args.style
+    graph_option = args.graph
     if not args.cachedir:
         if os.sep =='\\':
             config.cachedir = os.environ['APPDATA']+'\\'+'robogenerator'
@@ -142,6 +148,16 @@ def main():
         #print state_instance_graph
         casegenerator = StateMachineCaseGenerator(case_instance,data_instance,state_instance_graph)
         casegenerator.generate_case(raw_output,case_count,nsteps,strategy,case_style)
+        if graph_option:
+            config.frontier =[]
+            config.finished =casegenerator.get_tested_nodes()
+            config.deadend =[]
+            config.runstarts =[]
+            config.tested_transitions = casegenerator.get_tested_transitions()
+            generate_state_machine_graph(config,config.filename)
+            import Image
+            im = Image.open('%s.png'%config.filename)
+            im.show()
     elif parameters:
         #print 'data-driven only '
         casegenerator = DataDrivenCaseGenerator(case_instance,data_instance,case_style)

@@ -5,6 +5,7 @@ PyModel Graphics - generate graphics from pymodel FSM
 
 import graph.GraphicsOptions as GraphicsOptions
 from graph.Dot import dotfile
+import os
 
 def get_all_possible_transitions(state_list):
     all_transitions = []
@@ -13,11 +14,21 @@ def get_all_possible_transitions(state_list):
         if state.has_key('actions'):
             for action in state['actions']:
                 aname = action[0]
-                args = action[1:-2]
+                args = action[1]
+                print action
+                print args
                 model_result = action[-2]
                 next_state = action[-1]
                 all_transitions.append((current_state,(aname,args,model_result),next_state))
     return all_transitions
+
+def generate_state_machine_graph(fsm, fbasename):
+    fname = '%s.dot' % fbasename
+    fsm.graph = get_all_possible_transitions(fsm.state_graph)
+    dotfile(fname, fsm,'','')
+    command = 'dot -Tpng %s > %s.png' % (fname, fbasename)
+    print command
+    os.system(command)
 
 
 def main():
@@ -31,6 +42,12 @@ def main():
         fname = '%s.dot' % fbasename
         fsm.graph = get_all_possible_transitions(fsm.state_graph)
         dotfile(fname, fsm, options.transitionLabels, options.noStateTooltip)
+        command = 'dot -Tpng %s > %s.png' %(fname,fbasename)
+        print command
+        os.system(command)
+        import Image
+        im = Image.open('%s.png'%fbasename)
+        im.show()
 
 if __name__ == '__main__':
     main ()

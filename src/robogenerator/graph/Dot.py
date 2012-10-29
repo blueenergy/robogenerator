@@ -3,6 +3,7 @@ Dot - generate graphics in dot language
 """
 
 import os.path
+from types import MethodType, FunctionType
 
 def node(n, fsm):
     try: # FSM modules written by PyModel Analyzer have frontier attribute etc.
@@ -10,6 +11,7 @@ def node(n, fsm):
         finished = fsm.finished
         deadend = fsm.deadend
         runstarts = fsm.runstarts
+
     except AttributeError: # FSM modules written by hand may not have these
         frontier = list()
         finished = list()
@@ -19,7 +21,7 @@ def node(n, fsm):
         (n, 2 if n in fsm.accepting else 1, # peripheries
          'orange' if n in frontier else # high priority, analysis inconclusive
          'yellow' if n in deadend else
-         'lightgreen' if n in finished else
+         'green' if n in finished else
          'lightgray' if n == fsm.initial or n in runstarts else #lowest priority
          'white') # other states
 
@@ -39,17 +41,29 @@ def quote_string(x): # also appears in Analyzer
 def rlabel(result):
     return '/%s' % quote_string(result) if result != None else ''
 
-def transition(t, style):
+def get_transition_line_color(fsm,t):
+    try:
+        if t in fsm.tested_transitions:
+            return 'green'
+        else:
+            return 'red'
+    except AttributeError:
+        return 'black'
+
+
+def transition(t, style,fsm):
     current, (a, args, result), next = t
-    action = '%s%s%s' % (a.__name__, args, rlabel(result))
+    name_str = a.__name__ if type(a) in [MethodType, FunctionType] else a
+    transition = current,(name_str,args), next
+    action = '%s%s%s' % (name_str, args, rlabel(result))
     if style == 'name':
-        label = '%s' % a.__name__
+        label = '%s' % name_str
     elif style == 'none':
         label = '' 
     else: # 'action'
         label = action
-    return '%s -> %s [ label="%s", tooltip="%s" ]' % \
-        (current, next, label, action)
+    return '%s -> %s [ label="%s", tooltip="%s",color="%s"]' % \
+        (current, next, label, action,get_transition_line_color(fsm,transition))
 
 def dotfile(fname, fsm, style, noStateTooltip):
     f = open(fname, 'w')
@@ -60,8 +74,11 @@ def dotfile(fname, fsm, style, noStateTooltip):
     except: # FSM modules written by hand may not have states attribute
         nodes = set([current for (current,trans,next) in fsm.graph] 
                     + [next for (current,trans,next) in fsm.graph])
+        print nodes
         f.writelines([ '  %s ]\n' % node(n,fsm) for n in nodes ])    
     f.write('\n  // Transitions\n')
-    f.writelines([ '  %s\n' % transition(t, style) for t in fsm.graph ])
+    print fsm.graph
+    print 'graph output finished'
+    f.writelines([ '  %s\n' % transition(t, style,fsm) for t in fsm.graph ])
     f.write('}\n')
     f.close()
