@@ -64,5 +64,5 @@ def SelectAction(enabled):
         #print selected_action
     
         #aname,args,next_state = selected_action[0],selected_action[1],selected_action[-1]
-        incr(coverage,next)
+        incr(coverage,next_state)
         return aname,args,result,next_state
