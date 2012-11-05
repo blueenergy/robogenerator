@@ -66,7 +66,7 @@ def compute_cpp_optimal_route(state_name_list,all_possible_transitions):
         start_state = state_name_list[int(sub_route[1])]
         end_state = state_name_list[int(sub_route[2])]
         sub_transition_list = [tran for tran in all_possible_transitions if tran[0] == start_state and tran[-1] == end_state]
-        if len(sub_transition_list)>=3:
+        if len(sub_transition_list)>3:
             raise Exception, 'multiple transition between two node exist %s' %sub_transition_list
         else:
             optimized_transition.append(random.choice(sub_transition_list))
