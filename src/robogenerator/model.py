@@ -181,13 +181,16 @@ class Action(tuple):
         self.name = tuple_info[0].__name__ if type(tuple_info[0]) in [MethodType, FunctionType] else tuple_info[0]
         self.next_state_name = tuple_info[-1]
         self.argument = tuple_info[1] 
-        self.expected_result = tuple_info[2]
+        self.condition = tuple_info[2]
 
     def is_available(self):
-        if not self.expected_result:
+        if not self.condition:
             return True
+        if self.condition and callable(self.condition) and self.condition():
+            return True
+        else:
+            return False
 
-        return self.name(self.argument) == self.expected_result
 
     def write_step(self,out,kwargs={}):
         
