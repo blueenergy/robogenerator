@@ -48,6 +48,8 @@ def main():
 
     parser.add_argument('--host', '-ip', type=str, default=None,
                         help='Pate IP address (default is None)')
+    parser.add_argument('--variable','-v', type=str, default=None,
+                        help='unit type to do operation',action='append')
     parser.add_argument('--output', '-o', type=str, default=None,
                         help='output file (default is input file with NEW prefix)')
     parser.add_argument('--tests_max', '-t',
@@ -93,7 +95,7 @@ def main():
                          help='''directory in server to store tested combinations''')
     
     args = parser.parse_args()
-
+    print args.variable
     if args.host:
         os.environ['HOSTIP']= args.host
         
@@ -134,6 +136,12 @@ def main():
     output_filename = output.split('.')[0]
     raw_output = output_filename + '.' + 'txt'
     parameters = getattr(config,'parameters',None)
+    if args.variable :
+        for varible in args.variable:
+            key = varible.split(':')[0]
+            value = varible.split(':')[1].split()
+            parameters[key] = value
+    #print parameters
     state_graph = getattr(config,'state_graph',None)
     '''
     if state_graph and parameters:
