@@ -145,13 +145,7 @@ def main():
             parameters[key] = value
     #print parameters
     state_graph = getattr(config,'state_graph',None)
-    '''
-    if state_graph and parameters:
-        'mbt for data-driven'
-        state_instance_graph = [StateModel(state) for state in config.state_graph]
-        casegenerator = StateMachineCaseGenerator(case_instance,data_instance,state_instance_graph)
-        casegenerator.generate_case(output,case_count,nsteps,strategy)
-    '''
+
     if state_graph:
         #print 'mbt only'
         state_instance_graph = [StateModel(state) for state in config.state_graph]
