@@ -127,6 +127,8 @@ def main():
     case_instance = CaseModel(config)
     data_instance = DataModel(config,algorithm)
     
+    if getattr(config,'parameters',None) and not data_instance.get_max_combinations():
+        return
     if percentage:
         #print 'calculate percentage'
         case_count = len(data_instance.get_max_combinations())* int(percentage)/100
