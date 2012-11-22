@@ -114,7 +114,7 @@ class StateMachineCaseGenerator(CaseGenerator):
         #print self.state_name_list
         self.all_transitions = self.get_all_possible_transitions()
         print ' All possibles transitions to be tested is %s' %len(self.all_transitions)
-        print self.all_transitions
+        #print self.all_transitions
         self.all_possible_path = generate_sequence_map(self.all_transitions)
         print ' All possibles paths to be tested is %s' %len(self.all_possible_path)
         self.tested_transitions =[]
@@ -136,8 +136,7 @@ class StateMachineCaseGenerator(CaseGenerator):
             
             
     def print_diff_with_all_transitions(self,tested_transitions):
-        print tested_transitions
-        print self.all_transitions
+
         diff = set(self.all_transitions).difference(set(tested_transitions))
         if diff:
             print "following transitions not covered"
@@ -219,8 +218,6 @@ class StateMachineCaseGenerator(CaseGenerator):
             #case_name = '%s\n'%self.case_instance.case_name_template
             if len(valid_combinations)>=1:
                 for valid_combination in valid_combinations:
-                    print '***********'
-                    print valid_combination
                     case_name = Template(self.case_instance.case_name_template).substitute(**valid_combination)
                     out.write(case_name)
                     case_setup = Template(self.case_instance.test_setup).substitute(**valid_combination)

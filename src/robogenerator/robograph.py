@@ -15,8 +15,6 @@ def get_all_possible_transitions(state_list):
             for action in state['actions']:
                 aname = action[0]
                 args = action[1]
-                print action
-                print args
                 model_result = action[-2]
                 next_state = action[-1]
                 all_transitions.append((current_state,(aname,args,model_result),next_state))

@@ -28,8 +28,8 @@ def count(coverage, x):
   try:
       return [ n for (xitem,n) in coverage if xitem == x ][0]
   except:
-      print coverage
-      print x
+      #print coverage
+      #print x
       raise 
 
 def incr(coverage, x):

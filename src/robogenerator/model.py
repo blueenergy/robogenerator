@@ -196,9 +196,6 @@ class Action(tuple):
         
         case_step = self.name+'  '+'  '.join(self.argument)
 
-        print kwargs
-        if kwargs:
-            pass
         case_step = Template(case_step).safe_substitute(**kwargs)
         #print case_step
         out.write('  %s\n'%case_step)
