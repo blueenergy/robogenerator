@@ -1,6 +1,10 @@
 from distutils.core import setup
 from os.path import join
 import os
+import glob
+ 
+datadir = 'graph_algorithm'
+datafiles = [(datadir, [f for f in glob.glob(os.path.join(datadir, '*'))])]
 SCRIPTS = ['robogenerator','robograph']
 SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
 if os.sep == '\\':
@@ -18,5 +22,9 @@ setup(name='robogenerator',
 				'robogenerator.graph','robogenerator.graph_algorithm','robogenerator.strategy'],
 	  scripts = SCRIPTS,
       platforms    = 'any',
+      package_data = {
+        # If any package contains *.txt or *.rst files, include them:
+        '': ['*.class','*.java','*.exe'],
+    }
       )
 
