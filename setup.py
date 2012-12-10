@@ -10,7 +10,7 @@ SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
 
 SCRIPTS += [s+'.bat' for s in SCRIPTS]
 setup(name='robogenerator',
-      version='0.2',
+      version='0.3',
       description='Case generator for Robot',
       author='shuyolin',
       author_email='shuyong.y.lin@nsn.com',
