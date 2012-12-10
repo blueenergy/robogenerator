@@ -7,7 +7,7 @@ output_filename ='##title##.html'
 case_name_template = '##title##'
 
 '''
-title = 'preloading_et'
+
 
 division = Suppress(":")
 words = Word(alphanums)
@@ -24,8 +24,8 @@ content.setParseAction(lambda p:(p.action,p.expected_result))
 content.setResultsName('content')
 
 
-title = Suppress(startH1)+Suppress(anchorS)+keyword+Suppress(anchorE)+Suppress(endH1)
-title.setResultsName('title')
+title_template = Suppress(startH1)+Suppress(anchorS)+keyword+Suppress(anchorE)+Suppress(endH1)
+title_template.setResultsName('title')
 
 def parse_action(t):
     if t[0][1]:
@@ -45,54 +45,61 @@ state.setParseAction(lambda p: (p.state_name,list(p.actions)))
 state.setResultsName('state')
 
 
-states = OneOrMore(state).setResultsName('states')
+states_template = OneOrMore(state).setResultsName('states')
 html = startBody+states+endBody
 
 
-with open('preloading_et_xmind.html','r') as f:
-    html_doc= f.read()
 
-for srvrtokens,startloc,endloc in title.scanString(html_doc):
-    title = srvrtokens[0]
+def main():
+    import argparse
+    global title,states
+    parser = argparse.ArgumentParser(description='RoboGenerator 0.2 - a test data generator for Robot Framework',
+                                     formatter_class=argparse.RawTextHelpFormatter)
+    parser.add_argument('input', type=str, help='input file')
+    '''
+    parser.add_argument('--output', '-o', type=str, default=None,
+                        help='output file (default is input file with NEW prefix)')
+    '''
+    args = parser.parse_args()
     
-print title
+    input = args.input
+    #output = args.output
+    output_filename = input.split('.')[0]+'_'+'case'
+    raw_output = output_filename + '.' + 'txt'
+    
+    with open(input,'r') as f:
+        html_doc= f.read()
 
-for srvrtokens,startloc,endloc in states.scanString(html_doc):
-    states = srvrtokens
-    print states
-    print '**********'
+    for srvrtokens,startloc,endloc in title_template.scanString(html_doc):
+        title = srvrtokens[0]
         
-
-
-
-
-
-
-'''
-states = [('before preloading',[('running package','expected result1')]),
-          ('preloading ongoing',[('unit swo','expected result2')])]
-'''
-with open('1.txt','w') as f:
-    f.write(header.replace('##title##',title))
-    f.write('*** Test Cases ***\n')
-    index=1
-    for state in states:
-        for action in state[1]:
-            f.write('Test%s\n'%index)
-            f.write('  %s\n'%state[0])
-            f.write('  %s\n'%action[0])
-            if action[1]:
-                f.write('  %s\n'%action[1])
-            index+=1
-
-from tidy import tidy_cli
-
-command_string = '--inplace --format %s %s' % ('html', '1.txt') #print command_string
-command_string_list = command_string.split(' ') 
-
-retcode = tidy_cli(command_string_list)
-
+    print title
     
+    for srvrtokens,startloc,endloc in states_template.scanString(html_doc):
+        states = srvrtokens
+        print states
+        print '**********'
+    
+    
+    with open(raw_output,'w') as f:
+        f.write(header.replace('##title##',title))
+        f.write('*** Test Cases ***\n')
+        index=1
+        for state in states:
+            for action in state[1]:
+                f.write('Test%s\n'%index)
+                f.write('  %s\n'%state[0])
+                f.write('  %s\n'%action[0])
+                if action[1]:
+                    f.write('  %s\n'%action[1])
+
+    from tidy import tidy_cli
+
+    command_string = '--inplace --format %s %s' % ('html', raw_output) #print command_string
+    command_string_list = command_string.split(' ') 
+
+    retcode = tidy_cli(command_string_list)
 
 
-
+if __name__=='__main__':
+    main()
