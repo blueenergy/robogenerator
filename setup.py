@@ -7,8 +7,8 @@ datadir = 'graph_algorithm'
 datafiles = [(datadir, [f for f in glob.glob(os.path.join(datadir, '*'))])]
 SCRIPTS = ['robogenerator','robograph']
 SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
-if os.sep == '\\':
-    SCRIPTS += [s+'.bat' for s in SCRIPTS]
+
+SCRIPTS += [s+'.bat' for s in SCRIPTS]
 setup(name='robogenerator',
       version='0.2',
       description='Case generator for Robot',
