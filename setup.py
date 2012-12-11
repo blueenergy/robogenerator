@@ -1,16 +1,26 @@
-from distutils.core import setup
+#from distutils.core import setup
+from setuptools import setup
 from os.path import join
 import os
 import glob
+
+'''
+don't install PIL automatically since it will cause problem during compiling
+install_requires=[
+'PIL'
+],
+'''
+
+
  
 datadir = 'graph_algorithm'
 datafiles = [(datadir, [f for f in glob.glob(os.path.join(datadir, '*'))])]
-SCRIPTS = ['robogenerator','robograph']
+SCRIPTS = ['robogenerator','robograph','robomind']
 SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
 
 SCRIPTS += [s+'.bat' for s in SCRIPTS]
 setup(name='robogenerator',
-      version='0.3.1',
+      version='0.3.3',
       description='Case generator for Robot',
       author='shuyolin',
       author_email='shuyong.y.lin@nsn.com',
@@ -21,6 +31,7 @@ setup(name='robogenerator',
                 'robogenerator.example.TrialService','robogenerator.example.SIPCallService',
 				'robogenerator.graph','robogenerator.graph_algorithm','robogenerator.strategy'],
 	  scripts = SCRIPTS,
+
       platforms    = 'any',
       package_data = {
         # If any package contains *.txt or *.rst files, include them:

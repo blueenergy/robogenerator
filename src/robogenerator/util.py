@@ -1,5 +1,6 @@
 import os
 import logging
+import sys
 
 def scan_and_remove(path,postfix):
 #    print "hello"
