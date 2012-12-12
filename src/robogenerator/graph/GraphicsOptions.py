@@ -4,9 +4,9 @@ Options and arguments for PyModel Graphics
 
 from optparse import OptionParser
 
-usage = """pmg.py [options] fsm
+usage = """robograph.py [options] fsm
 
-PyModel Graphics. The single argument fsm is one finite state machine
+Robogenerator Graphics. The single argument fsm is one finite state machine
 (FSM) module name (without the .py suffix).  The FSM is typically
 produced by the PyModel Analyzer, pma.py.  From the FSM, pmg generates
 a file of commands in the dot graph-drawing language.  This .dot file
@@ -21,7 +21,7 @@ Control clutter in the graph with the -l --transitionLabels option:
 
 In the generated graphics, the initial state is gray.  Accepting
 states have a double border.  Unexplored or incompletely explored
-states are orange (these may have outgoing transitions that are
+states are red (these may have outgoing transitions that are
 not shown). Terminal states (with no outgoing transitions) that are
 accepting states are green.  Terminal states that are not accepting
 states are yellow; runs that end in these states are considered

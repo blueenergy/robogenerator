@@ -77,8 +77,6 @@ that can generate tests for Volume Partitioning Example::
 	An example of a valid rule line::
 
     def is_valid_combination(row):
-
-    
 	    n=len(row)
 	    if n>=len(parameters):
 	
@@ -227,7 +225,7 @@ Other extended Function (Could generate State-machine based graph)
     Then you use Gvedit.ext to open file  SIP_Call_Service.dot .
 
     It will show following picture£º
-
+	.. image:: src/robogenerator/example/SIPCallService/SIP_Call_Service.png
     From the picture we could see, there are a lot of  possible sequence to execute all possible test case, if we don¡¯t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.
 
 ============
@@ -241,7 +239,7 @@ From `Python Package Index <http://pypi.python.org/pypi>`_::
 
 From source::
 
-    https://github.com/blueenergy/robogenerator
+    git clone https://github.com/blueenergy/robogenerator
     cd robogenerator
     python setup.py install
 
@@ -265,10 +263,6 @@ test generation.
 
 State blocks should be next. You can define which state are the starting state.
 
-State block starts with a line containing the states name.
-Valid state name contains only upper and lowercase characters a-zA-Z,
-numbers (not at the start) 0-9 and spaces (not at the start or end and only one
-between words).
 
 This is followed by the Robot Framework steps that should be executed when in that
 state.
@@ -277,19 +271,18 @@ This can be followed by an actions block definition.
 
 An actions block starts with [Actions] tag and is followed by one or more action lines.
 
-An action line has four parts:
-  * a Robot Framework step that is executed when the action happens (action label) (you can also leave this out - use a tau transition)
-  * '  ==>  ' right arrow with two spaces before and after
-  * Name of the state that the machine ends up when the action is taken (end state)
-  * Optional rule (when the action is available) this either starts with
-    '  when  ' and the rule or  '  otherwise' - meaning this action should be taken when
-    all of the other actions with same action label are not available
 
 An example of a valid state definition::
 
     ring_state = {'name':'ring_state',
           'step':(state_should_be,'ring_state'),
-           'actions':[(receive_message,('${200}',),None,'ready_state'),
-					(receive_message,('${REJECT}',),None,'idle_state'),
-					(receive_message,('${CANCEL}',),None,'cancel_state')]
+           'actions':[(receive_message,(),'Message equal to 200','ready_state'),
+					(receive_message,(),'Message equal to REJECT','idle_state'),
+					(receive_message,(),'Message equal to CANCEL','cancel_state')]
           }
+In above example, it means in ring_state, our test case will continue to receive message, and it will change to different
+state depend on the message it has received.For example::
+ * In own state, it will check current state is really 'ring state'
+ * if it has received message 200, then it will switch to 'ready state'.
+ * if has received message REJECT, then it will switch to 'idle state'.
+ * if it has received message CANCEL, then it will switch to 'cancel state'.
