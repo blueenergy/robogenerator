@@ -1,0 +1,314 @@
+===========
+RoboGenerator
+===========
+
+A test data generator for `Robot Framework <http://www.robotframework.org>`_.
+
+======================
+What is this tool for?
+======================
+
+You know those ugly bugs that users report that somehow were missed by all your
+ATDD-, TDD- and exploratory testing?
+Those bugs that lurk in the corners of complexity of the system that you are building.
+Those bugs that will make users of your application hate you..
+
+This tool is here to help you seek and destroy those bugs before the users will find them.
+
+It gives you the ability to generate a huge number of tests that can go through
+a very vast number of similar (or not so similar) test scenarios.
+
+===========
+What is it?
+===========
+
+If you know Model-Based Testing or automata theory:
+With Robogenerator you define an extended finite state machine (in a python grammer) that represents a set of tests.
+Robogenerator also contains algorithms that can be used to generate real executable Robot Framework tests from a Robogenerator model.
+
+If you know Combinatorial Testing or like data driven testing:
+With Robogenerator you can define sets of data and rules about that data, that can be used to generate data driven tests
+(and also keyword driven tests). This allows you to keep your data in compact sets and let the system generate the real
+test data vectors from there.
+
+=======================
+The language used to describe the model
+=======================
+It will use pure python grammar, there are advantage and disadvantage about this.
+
+Advantage:
+
+     Very flexible, all python related grammar could be  used here
+
+Disadvantage:
+
+      For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
+
+Here I would like to introduce this tool by several actual examples
+
+====================================
+No1ㄩ using combinatorial techniques
+====================================
+
+1.Here is an example machine (using combinatorial techniques)
+that can generate tests for `SeleniumLibrary demo <http://code.google.com/p/robotframework-seleniumlibrary/wiki/Demo>`_::
+
+    documentation ='''The case is to create and delete all kinds of volumes'''
+	suite_setup ='Connect to System'
+	suite_teardown='Disconnect from System'
+
+	force_tags ='''owner-***  team-*  phase-RT  '''
+
+
+    parameters_template = {'type': [ "Primary", "Logical", "Single", "Span", "Stripe", "Mirror", "RAID-5"]
+             , 'size':[ "10", "100", "500", "1000", "5000", "10000", "40000"]
+             , 'format_method':[ "quick","slow"]
+             ,'file_system':['FAT', 'FAT32', 'NTFS']
+             ,'cluster_size':['512', '1024', '2048', '4096', '8192', '16384', '32768', '65536']
+             ,'compression':['on', 'off']         
+             }
+
+    parameters = parameters_template
+    output_filename ='create_and_delete_all_kinds_of_volumes.html'
+
+    case_name_template = 'create and delete volume with different parameters'
+    case_step_template = '''create_and_delete_volume_test  ${type}  ${size}  ${format_method}  ${file_system}  ${cluster_size}  ${compression}'''
+2. How to filter out invalid test data
+	An example of a valid rule line::
+
+    def is_valid_combination(row):
+
+    
+    n=len(row)
+    if n>=len(parameters):
+
+        '''
+            #
+            # File systems have constraints on volume size
+            #
+            IF [FSYSTEM] = "FAT"   THEN [SIZE] <= 4096;
+            IF [FSYSTEM] = "FAT32" THEN [SIZE] <= 32000;
+        '''
+        if row['file_system'] =="FAT" and row['size']>4096:
+            return False
+        if row['file_system'] =="FAT32" and row['size']>32000:
+            return False
+        '''
+        # Compression can be applied only for volumes
+        # formatted as NTFS and with cluster size <= 4K
+        '''
+        if row['file_system']  in ["FAT", "FAT32"] or (row['file_system'] == "NTFS" and row['cluster_size'] >4096):
+            if row['compression'] =='ON':
+                return False
+            else:
+                return True
+        
+    return True
+
+
+	Which means: Following combination is invalid
+	file_system =="FAT" and size>4096;
+	file_system =="FAT32" and size>32000;
+	
+   3 Currently we support 4 kinds of data generation algorithm.
+	random ----generate test data randomly
+
+	DFS---- deep first search, generate all of possible combinations
+
+	pairwise--- generate test data in pairwise algorithm
+
+	smart-random-------generate test data randomly, and in next run, it will only select un-tested combination in all possible combination
+
+    4.  Could indicate how many test case to generate
+    5. Could indicate the style which is used to display test data
+           normal---- normal Robot Test Case
+
+           atdd--------use Robot Template method, so the input/output model in test case would be more visible
+
+     6. The test case name would adapt with actual data combination
+     7. The output filename could be indicated
+        7.1the output file could be indicated inside model file, or indicated as a command-line argument
+
+		7.2 The output file could be in TXT, HTML,or other valid Robot Case format
+
+     8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
+      9. Could indicate actual test device info, such as ip, could test data could come from actual test device,  it could be well adapted to different hardware topology.
+           You could use your own test library to control how to use this feature
+
+	9.How to generate test case:
+		Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
+
+		robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
+		
+		
+========================================================
+No2: using model-based testing with finite state machine
+========================================================
+	1. How to describe our MBT test model
+	Here is another example machine (using model-based testing with finite state machine)::
+
+    documentation ='''The case is to do SIP Service test  in cost-effective way'''
+	suite_setup ='Connect to SUT'
+    suite_teardown='Disconnect from SUT'
+	force_tags ='''owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req'''
+	library ="sip_service_lib.py"
+	library = library.replace('\\','/')
+
+	output_filename ='SIP_Service_Test.html'
+	case_name_template = 'SIP Service Test'
+
+	idle_state=init_state=calling_state=base_trial_state=terminating_state=cancel_state =ring_state ={}
+
+	idle_state = {'name':'idle_state',
+          'step':(state_should_be,'idle_state'),
+          'actions':[(receive_message,('${OFFHOOK_SIGNAL}',),None,'init_state')]}
+		  
+	init_state = {'name':'init_state',
+          'step':(state_should_be,'init_state'),
+          'actions':[(receive_message,('${CALLING_SIGNAL}',),None,'calling_state')]
+          }
+	calling_state = {'name':'calling_state',
+          'step':(state_should_be,'calling_state'),
+          'actions':[(receive_message,('${TIMEOUTB}',),None,'terminating_state'),
+                     (receive_message,('${TIMEOUTA}',),None,'terminating_state'),
+		    (receive_message,('${CALL_PROCEEDING}',),None,'ring_state'),
+		    (receive_message,('${REJECT}',),None,'cancel_state')]
+          }
+	terminating_state = {'name':'terminating_state',
+          'step':(state_should_be,'terminating_state'),
+           'actions':[(receive_message,('${200_BYE}',),None,'idle_state')]}
+
+	cancel_state = {'name':'cancel_state',
+          'step':(state_should_be,'cutover_complete_state'),
+          'actions':[(receive_message,('${200_Cancel}',),None,'wait_response_state')]
+          }
+
+	ring_state = {'name':'ring_state',
+          'step':(state_should_be,'ring_state'),
+           'actions':[(receive_message,('${200}',),None,'ready_state'),
+					(receive_message,('${REJECT}',),None,'idle_state'),
+					(receive_message,('${CANCEL}',),None,'cancel_state')]
+          }
+
+
+	ready_state = {'name':'ready_state',
+          'step':(state_should_be,'ready_state'),
+           'actions':[(receive_message,('${BYE}',),None,'idle_state')]
+          }
+
+	wait_response_state = {'name':'wait_response_state',
+          'step':(state_should_be,'wait_response_state'),
+           'actions':[(receive_message,('${487_Invite}',),None,'idle_state')]
+          }
+
+	state_graph = [idle_state,init_state,calling_state,terminating_state,cancel_state,ring_state,ready_state,wait_response_state]
+
+
+	accepting = state_graph
+	initial = 'idle_state'
+	
+	2. different strategy to test
+    ShortestPath  ----- Generate case according to China Postman graph algorithm, which could balance test feedback cycle and test coverage 
+    StateCoverage ------- When need to select next step, it will select the minimum state as their next State
+    ActionNameCoverage ------- Select least covered Action Name To test
+    DynamicRandom ------------- Randomly select next State but try to avoid already tested
+ 
+	3. Could indicate how many steps inside one test case
+ 
+	4. Examples
+    
+     generate test case with shortest path cost,assume each step has same weight,and output to show.html
+        robogenerator SIP_Call_Service.py 每-strategy ShortestPath 每o show.html 
+     generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100
+        robogenerator SIP_Call_Service.py 每-strategy ActionNameCoverage 每t 1 每n  100 每o show.html 
+
+=================================================================
+Other extended Function (Could generate State-machine based graph)
+=================================================================
+
+  If you have installed tool GraphViz, then you could use robograph (a tool inside robogenerator)  to generate state-activity graph by your state-machine model.
+
+   1. At first
+
+       robograph  SIP_Call_Service    # without .py suffix
+
+      then there will be a file SIP_Call_Service.dot in current directory
+
+    Then you use Gvedit.ext to open file  SIP_Call_Service.dot .
+
+    It will show following pictureㄩ
+
+    From the picture we could see, there are a lot of  possible sequence to execute all possible test case, if we don＊t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.
+
+============
+Installation
+============
+
+From `Python Package Index <http://pypi.python.org/pypi>`_::
+
+    pip install robogenerator
+
+
+From source::
+
+    https://github.com/blueenergy/robogenerator
+    cd robogenerator
+    python setup.py install
+
+After this you should have a commandline tool called 'robogenerator' available.
+See 'robogenerator --help' for commandline tool usage.
+
+======
+Syntax
+======
+
+Full Python language power could be used,but you need to take care not to make the model too complicated 
+
+
+You can have a Robot Framework like documentation at the beginning of the machine file.
+
+You can have a Robot Framework like suite_setup at the beginning of the machine file.
+
+
+
+====================
+Machine table syntax
+====================
+
+
+
+Rules can be used to remove variable combinations that should not be used in
+test generation.
+
+
+
+State blocks should be next. First state block is the starting state.
+
+State block starts with a line containing the states name.
+Valid state name contains only upper and lowercase characters a-zA-Z,
+numbers (not at the start) 0-9 and spaces (not at the start or end and only one
+between words).
+
+This is followed by the Robot Framework steps that should be executed when in that
+state.
+
+This can be followed by an actions block definition.
+
+An actions block starts with [Actions] tag and is followed by one or more action lines.
+
+An action line has four parts:
+  * a Robot Framework step that is executed when the action happens (action label) (you can also leave this out - use a tau transition)
+  * '  ==>  ' right arrow with two spaces before and after
+  * Name of the state that the machine ends up when the action is taken (end state)
+  * Optional rule (when the action is available) this either starts with
+    '  when  ' and the rule or  '  otherwise' - meaning this action should be taken when
+    all of the other actions with same action label are not available
+
+An example of a valid state definition::
+
+    ring_state = {'name':'ring_state',
+          'step':(state_should_be,'ring_state'),
+           'actions':[(receive_message,('${200}',),None,'ready_state'),
+					(receive_message,('${REJECT}',),None,'idle_state'),
+					(receive_message,('${CANCEL}',),None,'cancel_state')]
+          }
