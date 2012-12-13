@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
+<title></title>
+<style type="text/css">
+
+/* Robot Framework User Guide Style Sheet
+
+   This stylesheet contains styles from restructuredText's default 
+   'html4css1.css' and after that modifications needed for Robot Framework User
+   Guide. These styles are added into the same file against suggestions at 
+   reST's stylesheet  howto mentioned below, because we want to be able to 
+   embed all styles into the created HTML file. Everything before 'Robot 
+   Framework User Guide Modifications' text is from 'html4css1.css' without 
+   any changes so that part can still be changed easily.
+*/
+
+
+/*
+:Author: David Goodger (goodger@python.org)
+:Id: $Id: html4css1.css 5196 2007-06-03 20:25:28Z wiemann $
+:Copyright: This stylesheet has been placed in the public domain.
+
+Default cascading style sheet for the HTML output of Docutils.
+
+See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
+customize this style sheet.
+*/
+
+/* used to remove borders from tables and images */
+.borderless, table.borderless td, table.borderless th {
+  border: 0 }
+
+table.borderless td, table.borderless th {
+  /* Override padding for "table.docutils td" with "! important".
+     The right padding separates the table cells. */
+  padding: 0 0.5em 0 0 ! important }
+
+.first {
+  /* Override more specific margin styles with "! important". */
+  margin-top: 0 ! important }
+
+.last, .with-subtitle {
+  margin-bottom: 0 ! important }
+
+.hidden {
+  display: none }
+
+a.toc-backref {
+  text-decoration: none ;
+  color: black }
+
+blockquote.epigraph {
+  margin: 2em 5em ; }
+
+dl.docutils dd {
+  margin-bottom: 0.5em }
+
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+
+div.abstract {
+  margin: 2em 5em }
+
+div.abstract p.topic-title {
+  font-weight: bold ;
+  text-align: center }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em ;
+  border: medium outset ;
+  padding: 1em }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold ;
+  font-family: sans-serif }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title {
+  color: red ;
+  font-weight: bold ;
+  font-family: sans-serif }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+
+div.dedication {
+  margin: 2em 5em ;
+  text-align: center ;
+  font-style: italic }
+
+div.dedication p.topic-title {
+  font-weight: bold ;
+  font-style: normal }
+
+div.figure {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+div.footer, div.header {
+  clear: both;
+  font-size: smaller }
+
+div.line-block {
+  display: block ;
+  margin-top: 1em ;
+  margin-bottom: 1em }
+
+div.line-block div.line-block {
+  margin-top: 0 ;
+  margin-bottom: 0 ;
+  margin-left: 1.5em }
+
+div.sidebar {
+  margin: 0 0 0.5em 1em ;
+  border: medium outset ;
+  padding: 1em ;
+  background-color: #ffffee ;
+  width: 40% ;
+  float: right ;
+  clear: right }
+
+div.sidebar p.rubric {
+  font-family: sans-serif ;
+  font-size: medium }
+
+div.system-messages {
+  margin: 5em }
+
+div.system-messages h1 {
+  color: red }
+
+div.system-message {
+  border: medium outset ;
+  padding: 1em }
+
+div.system-message p.system-message-title {
+  color: red ;
+  font-weight: bold }
+
+div.topic {
+  margin: 2em }
+
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em }
+
+h1.title {
+  text-align: center }
+
+h2.subtitle {
+  text-align: center }
+
+hr.docutils {
+  width: 75% }
+
+img.align-left {
+  clear: left }
+
+img.align-right {
+  clear: right }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em }
+
+ol.arabic {
+  list-style: decimal }
+
+ol.loweralpha {
+  list-style: lower-alpha }
+
+ol.upperalpha {
+  list-style: upper-alpha }
+
+ol.lowerroman {
+  list-style: lower-roman }
+
+ol.upperroman {
+  list-style: upper-roman }
+
+p.attribution {
+  text-align: right ;
+  margin-left: 50% }
+
+p.caption {
+  font-style: italic }
+
+p.credits {
+  font-style: italic ;
+  font-size: smaller }
+
+p.label {
+  white-space: nowrap }
+
+p.rubric {
+  font-weight: bold ;
+  font-size: larger ;
+  color: maroon ;
+  text-align: center }
+
+p.sidebar-title {
+  font-family: sans-serif ;
+  font-weight: bold ;
+  font-size: larger }
+
+p.sidebar-subtitle {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+p.topic-title {
+  font-weight: bold }
+
+pre.address {
+  margin-bottom: 0 ;
+  margin-top: 0 ;
+  font-family: serif ;
+  font-size: 100% }
+
+pre.literal-block, pre.doctest-block {
+  margin-left: 2em ;
+  margin-right: 2em }
+
+span.classifier {
+  font-family: sans-serif ;
+  font-style: oblique }
+
+span.classifier-delimiter {
+  font-family: sans-serif ;
+  font-weight: bold }
+
+span.interpreted {
+  font-family: sans-serif }
+
+span.option {
+  white-space: nowrap }
+
+span.pre {
+  white-space: pre }
+
+span.problematic {
+  color: red }
+
+span.section-subtitle {
+  /* font-size relative to parent (h1..h6 element) */
+  font-size: 80% }
+
+table.citation {
+  border-left: solid 1px gray;
+  margin-left: 1px }
+
+table.docinfo {
+  margin: 2em 4em }
+
+table.docutils {
+  margin-top: 0.5em ;
+  margin-bottom: 0.5em }
+
+table.footnote {
+  border-left: solid 1px black;
+  margin-left: 1px }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em ;
+  padding-right: 0.5em ;
+  vertical-align: top }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: bold ;
+  text-align: left ;
+  white-space: nowrap ;
+  padding-left: 0 }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100% }
+
+ul.auto-toc {
+  list-style-type: none }
+
+
+/* **************************************** *
+ * Robot Framework User Guide Modifications * 
+ * **************************************** */
+
+/* Tables
+   - example, tsv-example: test data examples
+   - messages: log message examples
+   - tabular: normal tabular information
+*/
+table.example, table.tsv-example, table.messages, table.tabular {
+    border: 1px solid #808080;
+    border-collapse: collapse;
+    empty-cell: show;
+    margin: 0.5em 2em;
+}
+table.example caption, table.tsv-example caption, table.tabular caption {
+    text-align: left;
+    padding-bottom: 0.5em;
+    font-style: italic;
+}
+table.example th, table.example td, table.tsv-example td {
+    border: 1px solid #808080;
+    font-family: arial,helvetica,sans-serif;
+    height: 1.2em;
+    font-size: 0.8em;
+}
+table.example th {
+    padding: 0.1em 1em;
+    background: #E0E0E0;
+}
+table.example td, table.tsv-example td {
+    padding: 0.1em 1em 0.1em 0.3em;
+}
+table.tabular th, table.tabular td {
+    border: 1px solid black;
+    padding: 0.1em 0.3em;
+    height: 1.2em;
+    font-size: 0.9em;
+}
+table.messages {
+    border: 1px solid gray;
+    font-family: monospace;
+    margin: 1em 2em;
+    width: 60%;
+}
+table.messages td {
+    vertical-align: top;
+    padding: 0.1em 0.2em;
+}
+table.messages td.time {
+    width: 7em;
+    letter-spacing: -0.05em;
+} 
+table.messages td.level {
+    width: 5em;
+    text-align: center;
+}
+table.messages td.fail, table.messages td.error {
+    color: red;
+}
+table.messages td.pass {
+    color: #009900;
+}
+table.messages td.warn {
+    color: #FFCC00;
+}
+
+/* Roles -- these are defined in roles.txt file */
+
+.var {
+    background: #f4f4f4;
+    font-size: 0.9em;
+}
+.opt {
+    font-style: italic;
+}
+.prog, .code, .cli {
+    background: #f4f4f4;
+    font-family: monospace;
+}
+.msg {
+    font-family: monospace;
+}
+.name {  
+    font-style: italic;
+}
+.path {
+    font-style: italic;
+}
+.misc, .literal {
+    background: #f4f4f4;
+}
+
+
+/* Overridden and modified styles */
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+    border: 0.1em solid gray;
+    margin: 1em 2em;
+    padding: 0.7em 1em;
+    font-size: 0.9em;
+}
+pre.literal-block, pre.doctest-block {
+    background: #f4f4f4;
+}
+li, li p.first {
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+}
+div.contents li {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}
+
+
+/* Pygments 
+
+- Styles generated using "HtmlFormatter().get_style_defs('.highlight')"
+- Changed only background (f8f8f8 -> f4f4f4) and added margin
+- For more details see e.g. http://pygments.org/docs/quickstart/
+*/
+
+.highlight  { background: #f4f4f4; margin: 1em 2em; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+</style>
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="robogenerator">
+<h1>RoboGenerator</h1>
+<p>A test data generator for <a class="reference external" href="http://www.robotframework.org">Robot Framework</a>.</p>
+</div>
+<div class="section" id="what-is-this-tool-for">
+<h1>What is this tool for?</h1>
+<dl class="docutils">
+<dt>Sometimes the potential case pool is so huge that it is not feasible to write all of them down,</dt>
+<dd>because it will bring tremendous maintenance effort.</dd>
+</dl>
+<p>Also testers complain test automation can't help them to find bugs.
+Due to normally all case will be executed in repeatable sequence, it is so-called Pest Killer effect.</p>
+<p>And also we found ugly bugs that users report that somehow were missed by all your
+ATDD-, TDD- and manual exploratory testing?</p>
+<p>This tool is here to define your test input combination in models,
+so you only need to maintain models, and it will generate Robot Case automatically for you.</p>
+<p>It gives you the ability to generate a huge number of tests that can go through
+a very vast number of similar (or not so similar) test scenarios.
+Also the generated test data and test sequence will be in random order,
+so it can give more possibility to avoid Pest Killer effect.</p>
+</div>
+<div class="section" id="what-is-it">
+<h1>What is it?</h1>
+<p>If you know Model-Based Testing or automata theory:
+With Robogenerator you define an extended finite state machine (in a python grammer) that represents a set of tests.
+Robogenerator also contains algorithms that can be used to generate real executable Robot Framework tests from a Robogenerator model.</p>
+<p>If you know Combinatorial Testing or like data driven testing:
+With Robogenerator you can define sets of data and rules about that data, that can be used to generate data driven tests
+(and also keyword driven tests). This allows you to keep your data in compact sets and let the system generate the real
+test data vectors from there.</p>
+</div>
+<div class="section" id="the-language-used-to-describe-the-model">
+<h1>The language used to describe the model</h1>
+<p>It will use pure python grammar, there are advantage and disadvantage about this.</p>
+<dl class="docutils">
+<dt>Advantage:</dt>
+<dd>Very flexible, all python related grammar could be  used here</dd>
+<dt>Disadvantage:</dt>
+<dd>For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.</dd>
+</dl>
+<p>Here I would like to introduce this tool by several actual examples</p>
+</div>
+<div class="section" id="no1-using-combinatorial-techniques">
+<h1>No1： using combinatorial techniques</h1>
+<p>1.Here is an example machine (using combinatorial techniques)
+that can generate tests for Volume Partitioning Example:</p>
+<pre class="literal-block">
+documentation ='''The case is to create and delete all kinds of volumes'''
+    suite_setup ='Connect to System'
+    suite_teardown='Disconnect from System'
+
+    force_tags ='''owner-***  team-*  phase-RT  '''
+
+
+parameters_template = {'type': [ &quot;Primary&quot;, &quot;Logical&quot;, &quot;Single&quot;, &quot;Span&quot;, &quot;Stripe&quot;, &quot;Mirror&quot;, &quot;RAID-5&quot;]
+         , 'size':[ &quot;10&quot;, &quot;100&quot;, &quot;500&quot;, &quot;1000&quot;, &quot;5000&quot;, &quot;10000&quot;, &quot;40000&quot;]
+         , 'format_method':[ &quot;quick&quot;,&quot;slow&quot;]
+         ,'file_system':['FAT', 'FAT32', 'NTFS']
+         ,'cluster_size':['512', '1024', '2048', '4096', '8192', '16384', '32768', '65536']
+         ,'compression':['on', 'off']
+         }
+
+parameters = parameters_template
+output_filename ='create_and_delete_all_kinds_of_volumes.html'
+
+case_name_template = 'create and delete volume with different parameters'
+case_step_template = '''create_and_delete_volume_test  ${type}  ${size}  ${format_method}  ${file_system}  ${cluster_size}  ${compression}'''
+</pre>
+<ol class="arabic simple" start="2">
+<li>How to filter out invalid test data</li>
+</ol>
+<p>An example of a valid rule line:</p>
+<pre class="literal-block">
+def is_valid_combination(row):
+    n=len(row)
+    if n&gt;=len(parameters):
+
+        if row['file_system'] ==&quot;FAT&quot; and row['size']&gt;4096:
+            return False
+        if row['file_system'] ==&quot;FAT32&quot; and row['size']&gt;32000:
+            return False
+
+        if row['file_system']  in [&quot;FAT&quot;, &quot;FAT32&quot;] or (row['file_system'] == &quot;NTFS&quot; and row['cluster_size'] &gt;4096):
+            if row['compression'] =='ON':
+                return False
+            else:
+                return True
+
+    return True
+</pre>
+<dl class="docutils">
+<dt>Which means: Following combination is invalid</dt>
+<dd>file_system ==&quot;FAT&quot; and size&gt;4096;
+file_system ==&quot;FAT32&quot; and size&gt;32000;</dd>
+<dt>3.Currently we support 4 kinds of data generation algorithm.</dt>
+<dd><p class="first">random ----generate test data randomly</p>
+<p>DFS---- deep first search, generate all of possible combinations</p>
+<p>pairwise--- generate test data in pairwise algorithm</p>
+<p class="last">smart-random-------generate test data randomly, and in next run, it will only select un-tested combination in all possible combination</p>
+</dd>
+</dl>
+<ol class="arabic" start="4">
+<li><p class="first">Could indicate how many test case to generate</p>
+</li>
+<li><dl class="first docutils">
+<dt>Could indicate the style which is used to display test data</dt>
+<dd><p class="first">normal---- normal Robot Test Case</p>
+<p class="last">atdd--------use Robot Template method, so the input/output model in test case would be more visible</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">The test case name would adapt with actual data combination</p>
+</li>
+<li><p class="first">The output filename could be indicated</p>
+<p>the output file could be indicated inside model file, or indicated as a command-line argument</p>
+<p>The output file could be in TXT, HTML,or other valid Robot Case format</p>
+</li>
+<li><p class="first">The case step should be a  keyword which has been defined inside Robot Resource file or python test library</p>
+</li>
+<li><dl class="first docutils">
+<dt>Could indicate actual test device info, such as ip, could test data could come from actual test device,</dt>
+<dd><p class="first last">it could be well adapted to different hardware topology.
+You could use your own test library to control how to use this feature</p>
+</dd>
+</dl>
+</li>
+</ol>
+<dl class="docutils">
+<dt>10.How to generate test case:</dt>
+<dd><p class="first">Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html</p>
+<p class="last">robogenerator  - g random –t 10 –o show.html –ip <em>.</em>.*.*  create_and_delete_volume_test.py</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="no2-using-model-based-testing-with-finite-state-machine">
+<h1>No2: using model-based testing with finite state machine</h1>
+<blockquote>
+<blockquote>
+<p>1. How to describe our MBT test model
+Here is another example machine (using model-based testing with finite state machine):</p>
+<pre class="literal-block">
+documentation ='''The case is to do SIP Service test  in cost-effective way'''
+    suite_setup ='Connect to SUT'
+suite_teardown='Disconnect from SUT'
+    force_tags ='''owner-shuyolin  team-AreaCI  phase-RT  requirement-area-SS  req-PRS_None_Req'''
+    library =&quot;sip_service_lib.py&quot;
+    library = library.replace('\\','/')
+
+    output_filename ='SIP_Service_Test.html'
+    case_name_template = 'SIP Service Test'
+
+    idle_state=init_state=calling_state=base_trial_state=terminating_state=cancel_state =ring_state ={}
+
+    idle_state = {'name':'idle_state',
+      'step':(state_should_be,'idle_state'),
+      'actions':[(receive_message,('${OFFHOOK_SIGNAL}',),None,'init_state')]}
+
+    init_state = {'name':'init_state',
+      'step':(state_should_be,'init_state'),
+      'actions':[(receive_message,('${CALLING_SIGNAL}',),None,'calling_state')]
+      }
+    calling_state = {'name':'calling_state',
+      'step':(state_should_be,'calling_state'),
+      'actions':[(receive_message,('${TIMEOUTB}',),None,'terminating_state'),
+                 (receive_message,('${TIMEOUTA}',),None,'terminating_state'),
+                (receive_message,('${CALL_PROCEEDING}',),None,'ring_state'),
+                (receive_message,('${REJECT}',),None,'cancel_state')]
+      }
+    terminating_state = {'name':'terminating_state',
+      'step':(state_should_be,'terminating_state'),
+       'actions':[(receive_message,('${200_BYE}',),None,'idle_state')]}
+
+    cancel_state = {'name':'cancel_state',
+      'step':(state_should_be,'cutover_complete_state'),
+      'actions':[(receive_message,('${200_Cancel}',),None,'wait_response_state')]
+      }
+
+    ring_state = {'name':'ring_state',
+      'step':(state_should_be,'ring_state'),
+       'actions':[(receive_message,('${200}',),None,'ready_state'),
+                                    (receive_message,('${REJECT}',),None,'idle_state'),
+                                    (receive_message,('${CANCEL}',),None,'cancel_state')]
+      }
+
+
+    ready_state = {'name':'ready_state',
+      'step':(state_should_be,'ready_state'),
+       'actions':[(receive_message,('${BYE}',),None,'idle_state')]
+      }
+
+    wait_response_state = {'name':'wait_response_state',
+      'step':(state_should_be,'wait_response_state'),
+       'actions':[(receive_message,('${487_Invite}',),None,'idle_state')]
+      }
+
+    state_graph = [idle_state,init_state,calling_state,terminating_state,cancel_state,ring_state,ready_state,wait_response_state]
+
+
+    accepting = state_graph
+    initial = 'idle_state'
+</pre>
+<ol class="arabic" start="2">
+<li><dl class="first docutils">
+<dt>different strategy to test</dt>
+<dd><p class="first last">ShortestPath  ----- Generate case according to China Postman graph algorithm, which could balance test feedback cycle and test coverage
+StateCoverage ------- When need to select next step, it will select the minimum state as their next State
+ActionNameCoverage ------- Select least covered Action Name To test
+DynamicRandom ------------- Randomly select next State but try to avoid already tested</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">Could indicate how many steps inside one test case</p>
+</li>
+<li><p class="first">Examples</p>
+</li>
+</ol>
+</blockquote>
+<dl class="docutils">
+<dt>generate test case with shortest path cost,assume each step has same weight,and output to show.html</dt>
+<dd>robogenerator SIP_Call_Service.py –-strategy ShortestPath –o show.html</dd>
+<dt>generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100</dt>
+<dd>robogenerator SIP_Call_Service.py –-strategy ActionNameCoverage –t 1 –n  100 –o show.html</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="other-extended-function-could-generate-state-machine-based-graph">
+<h1>Other extended Function (Could generate State-machine based graph)</h1>
+<blockquote>
+<p>If you have installed tool GraphViz, <a class="reference external" href="http://www.graphviz.org/Download..php">http://www.graphviz.org/Download..php</a>
+then you could use robograph (a tool inside robogenerator)  to generate state-activity graph by your state-machine model.</p>
+<blockquote>
+<ol class="arabic">
+<li><p class="first">At first</p>
+<blockquote>
+<p>robograph  -l name SIP_Call_Service    # without .py suffix, only show action name which will cause the transition to happen</p>
+</blockquote>
+<p>then there will be a file SIP_Call_Service.dot in current directory</p>
+</li>
+</ol>
+<blockquote>
+<dl class="docutils">
+<dt>It will show following picture：</dt>
+<dd><img alt="src/robogenerator/example/SIPCallService/SIP_Call_Service.png" class="first" src="src/robogenerator/example/SIPCallService/SIP_Call_Service.png" />
+<p class="last">Also you use Gvedit.exe to open file  SIP_Call_Service.dot, and edit the  .dot file with yourself.</p>
+</dd>
+</dl>
+<p>From the picture we could see, there are a lot of  possible sequence to execute all possible test case,
+if we don’t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</div>
+<div class="section" id="installation">
+<h1>Installation</h1>
+<p>From <a class="reference external" href="http://pypi.python.org/pypi">Python Package Index</a>:</p>
+<pre class="literal-block">
+pip install robogenerator
+</pre>
+<p>From source:</p>
+<pre class="literal-block">
+git clone https://github.com/blueenergy/robogenerator
+cd robogenerator
+python setup.py install
+</pre>
+<p>After this you should have a commandline tool called 'robogenerator' available.
+See 'robogenerator --help' for commandline tool usage.</p>
+</div>
+<div class="section" id="machine-table-syntax">
+<h1>Machine table syntax</h1>
+<p>Rules can be used to remove variable combinations that should not be used in
+test generation.</p>
+<p>State blocks should be next. You can define which state are the starting state.</p>
+<p>This is followed by the Robot Framework steps that should be executed when in that
+state.</p>
+<p>This can be followed by an actions block definition.</p>
+<p>An actions block starts with 'actions' and is followed by one or more action lines.
+In every action line, there would be four part:</p>
+<p>1st argument refers to action keyword that would be executed in that transition.
+You could use pure python style or Robot Keyword style.</p>
+<p>2nd argument refers to argument that would be used with action keyword.</p>
+<p>3rd argument refers to a entrance function that would be validated before the transition could actually happen.</p>
+<p>4th argument refers to the next state that action keyword will bring us to.</p>
+<p>An example of a valid state definition:</p>
+<pre class="literal-block">
+ring_state = {'name':'ring_state',
+      'step':(state_should_be,'ring_state'),
+       'actions':[(receive_message,(),'Message equal to 200','ready_state'),
+                                    (receive_message,(),'Message equal to REJECT','idle_state'),
+                                    (receive_message,(),'Message equal to CANCEL','cancel_state')]
+      }
+</pre>
+<p>In above example, it means in ring_state, our test case will continue to receive message, and it will change to different
+state depend on the message it has received.For example:</p>
+<pre class="literal-block">
+* In own state, it will check current state is really 'ring state'
+* if it has received message 200, then it will switch to 'ready state'.
+* if has received message REJECT, then it will switch to 'idle state'.
+* if it has received message CANCEL, then it will switch to 'cancel state'.
+</pre>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+Generated on: 2012-12-13 01:55 UTC.
+
+</div>
+</body>
+</html>
