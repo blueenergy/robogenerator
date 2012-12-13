@@ -1,6 +1,6 @@
-===========
+=============
 RoboGenerator
-===========
+=============
 
 A test data generator for `Robot Framework <http://www.robotframework.org>`_.
 
@@ -8,15 +8,22 @@ A test data generator for `Robot Framework <http://www.robotframework.org>`_.
 What is this tool for?
 ======================
 
-You know those ugly bugs that users report that somehow were missed by all your
-ATDD-, TDD- and manual exploratory testing?
-Those bugs that lurk in the corners of complexity of the system that you are building.
-Those bugs that will make users of your application hate you..
+Sometimes the potential case pool is so huge that it is not feasible to write all of them down,
+ because it will bring tremendous maintenance effort.
+ 
+Also testers complain test automation can't help them to find bugs.
+Due to normally all case will be executed in repeatable sequence, it is so-called Pest Killer effect.
 
-This tool is here to help you seek and destroy those bugs before the users will find them.
+And also we found ugly bugs that users report that somehow were missed by all your
+ATDD-, TDD- and manual exploratory testing?
+
+This tool is here to define your test input combination in models, 
+so you only need to maintain models, and it will generate Robot Case automatically for you.
 
 It gives you the ability to generate a huge number of tests that can go through
 a very vast number of similar (or not so similar) test scenarios.
+Also the generated test data and test sequence will be in random order, 
+so it can give more possibility to avoid Pest Killer effect.
 
 ===========
 What is it?
@@ -31,18 +38,16 @@ With Robogenerator you can define sets of data and rules about that data, that c
 (and also keyword driven tests). This allows you to keep your data in compact sets and let the system generate the real
 test data vectors from there.
 
-=======================
+=======================================
 The language used to describe the model
-=======================
+=======================================
 It will use pure python grammar, there are advantage and disadvantage about this.
 
 Advantage:
-
-     Very flexible, all python related grammar could be  used here
+   Very flexible, all python related grammar could be  used here
 
 Disadvantage:
-
-      For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
+   For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
 
 Here I would like to introduce this tool by several actual examples
 
@@ -73,10 +78,12 @@ that can generate tests for Volume Partitioning Example::
 
     case_name_template = 'create and delete volume with different parameters'
     case_step_template = '''create_and_delete_volume_test  ${type}  ${size}  ${format_method}  ${file_system}  ${cluster_size}  ${compression}'''
+    
 2. How to filter out invalid test data
-	An example of a valid rule line::
 
-    def is_valid_combination(row):
+An example of a valid rule line::
+
+	def is_valid_combination(row):
 	    n=len(row)
 	    if n>=len(parameters):
 	
@@ -94,11 +101,11 @@ that can generate tests for Volume Partitioning Example::
 	    return True
 
 
-	Which means: Following combination is invalid
-		file_system =="FAT" and size>4096;
-		file_system =="FAT32" and size>32000;
+Which means: Following combination is invalid
+	file_system =="FAT" and size>4096;
+	file_system =="FAT32" and size>32000;
 	
-   3 Currently we support 4 kinds of data generation algorithm.
+3.Currently we support 4 kinds of data generation algorithm.
 	random ----generate test data randomly
 
 	DFS---- deep first search, generate all of possible combinations
@@ -107,26 +114,28 @@ that can generate tests for Volume Partitioning Example::
 
 	smart-random-------generate test data randomly, and in next run, it will only select un-tested combination in all possible combination
 
-    4.  Could indicate how many test case to generate
-    5. Could indicate the style which is used to display test data
+4.  Could indicate how many test case to generate
+5. Could indicate the style which is used to display test data
            normal---- normal Robot Test Case
 
            atdd--------use Robot Template method, so the input/output model in test case would be more visible
 
-    6. The test case name would adapt with actual data combination
-    7. The output filename could be indicated
-        7.1the output file could be indicated inside model file, or indicated as a command-line argument
+6. The test case name would adapt with actual data combination
+7. The output filename could be indicated
 
-		7.2 The output file could be in TXT, HTML,or other valid Robot Case format
+   the output file could be indicated inside model file, or indicated as a command-line argument
+   
+   The output file could be in TXT, HTML,or other valid Robot Case format
 
-    8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
-    9. Could indicate actual test device info, such as ip, could test data could come from actual test device,  it could be well adapted to different hardware topology.
-           You could use your own test library to control how to use this feature
+8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
+9. Could indicate actual test device info, such as ip, could test data could come from actual test device, 
+    it could be well adapted to different hardware topology.
+    You could use your own test library to control how to use this feature
 
-	10.How to generate test case:
-		Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
+10.How to generate test case:
+	Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
 
-		robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
+	robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
 		
 		
 ========================================================
@@ -210,23 +219,26 @@ No2: using model-based testing with finite state machine
      generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100
         robogenerator SIP_Call_Service.py 每-strategy ActionNameCoverage 每t 1 每n  100 每o show.html 
 
-=================================================================
+==================================================================
 Other extended Function (Could generate State-machine based graph)
-=================================================================
+==================================================================
 
-  If you have installed tool GraphViz, then you could use robograph (a tool inside robogenerator)  to generate state-activity graph by your state-machine model.
+  If you have installed tool GraphViz, http://www.graphviz.org/Download..php 
+  then you could use robograph (a tool inside robogenerator)  to generate state-activity graph by your state-machine model.
 
    1. At first
 
-       robograph  SIP_Call_Service    # without .py suffix
+       robograph  -l name SIP_Call_Service    # without .py suffix, only show action name which will cause the transition to happen
 
       then there will be a file SIP_Call_Service.dot in current directory
 
-    Then you use Gvedit.ext to open file  SIP_Call_Service.dot .
-
     It will show following pictureㄩ
 	.. image:: src/robogenerator/example/SIPCallService/SIP_Call_Service.png
-    From the picture we could see, there are a lot of  possible sequence to execute all possible test case, if we don＊t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.
+	
+	Also you use Gvedit.exe to open file  SIP_Call_Service.dot, and edit the  .dot file with yourself.
+	
+    From the picture we could see, there are a lot of  possible sequence to execute all possible test case, 
+    if we don＊t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.
 
 ============
 Installation
@@ -269,7 +281,17 @@ state.
 
 This can be followed by an actions block definition.
 
-An actions block starts with [Actions] tag and is followed by one or more action lines.
+An actions block starts with 'actions' and is followed by one or more action lines.
+In every action line, there would be four part:
+
+1st argument refers to action keyword that would be executed in that transition.
+You could use pure python style or Robot Keyword style.
+
+2nd argument refers to argument that would be used with action keyword.
+
+3rd argument refers to a entrance function that would be validated before the transition could actually happen.
+
+4th argument refers to the next state that action keyword will bring us to.
 
 
 An example of a valid state definition::
@@ -280,8 +302,10 @@ An example of a valid state definition::
 					(receive_message,(),'Message equal to REJECT','idle_state'),
 					(receive_message,(),'Message equal to CANCEL','cancel_state')]
           }
+          
 In above example, it means in ring_state, our test case will continue to receive message, and it will change to different
 state depend on the message it has received.For example::
+
  * In own state, it will check current state is really 'ring state'
  * if it has received message 200, then it will switch to 'ready state'.
  * if has received message REJECT, then it will switch to 'idle state'.

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-PyModel Graphics - generate graphics from pymodel FSM
+Robogenerator Graphics - generate graphics from Robogenerator FSM
 """
 
 import graph.GraphicsOptions as GraphicsOptions
