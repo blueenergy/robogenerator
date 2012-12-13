@@ -37,12 +37,10 @@ The language used to describe the model
 It will use pure python grammar, there are advantage and disadvantage about this.
 
 Advantage:
-
-     Very flexible, all python related grammar could be  used here
+   Very flexible, all python related grammar could be  used here
 
 Disadvantage:
-
-      For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
+   For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
 
 Here I would like to introduce this tool by several actual examples
 
@@ -76,29 +74,29 @@ that can generate tests for Volume Partitioning Example::
 2. How to filter out invalid test data
 	An example of a valid rule line::
 
-    def is_valid_combination(row):
-	    n=len(row)
-	    if n>=len(parameters):
-	
-	        if row['file_system'] =="FAT" and row['size']>4096:
-	            return False
-	        if row['file_system'] =="FAT32" and row['size']>32000:
-	            return False
-	
-	        if row['file_system']  in ["FAT", "FAT32"] or (row['file_system'] == "NTFS" and row['cluster_size'] >4096):
-	            if row['compression'] =='ON':
-	                return False
-	            else:
-	                return True
-	        
-	    return True
+def is_valid_combination(row):
+    n=len(row)
+    if n>=len(parameters):
+
+        if row['file_system'] =="FAT" and row['size']>4096:
+            return False
+        if row['file_system'] =="FAT32" and row['size']>32000:
+            return False
+
+        if row['file_system']  in ["FAT", "FAT32"] or (row['file_system'] == "NTFS" and row['cluster_size'] >4096):
+            if row['compression'] =='ON':
+                return False
+            else:
+                return True
+        
+    return True
 
 
-	Which means: Following combination is invalid
-		file_system =="FAT" and size>4096;
-		file_system =="FAT32" and size>32000;
+Which means: Following combination is invalid
+	file_system =="FAT" and size>4096;
+	file_system =="FAT32" and size>32000;
 	
-   3 Currently we support 4 kinds of data generation algorithm.
+3.Currently we support 4 kinds of data generation algorithm.
 	random ----generate test data randomly
 
 	DFS---- deep first search, generate all of possible combinations
@@ -107,26 +105,26 @@ that can generate tests for Volume Partitioning Example::
 
 	smart-random-------generate test data randomly, and in next run, it will only select un-tested combination in all possible combination
 
-    4.  Could indicate how many test case to generate
-    5. Could indicate the style which is used to display test data
+4.  Could indicate how many test case to generate
+5. Could indicate the style which is used to display test data
            normal---- normal Robot Test Case
 
            atdd--------use Robot Template method, so the input/output model in test case would be more visible
 
-    6. The test case name would adapt with actual data combination
-    7. The output filename could be indicated
-        7.1the output file could be indicated inside model file, or indicated as a command-line argument
+6. The test case name would adapt with actual data combination
+7. The output filename could be indicated
+    7.1the output file could be indicated inside model file, or indicated as a command-line argument
 
-		7.2 The output file could be in TXT, HTML,or other valid Robot Case format
+	7.2 The output file could be in TXT, HTML,or other valid Robot Case format
 
-    8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
-    9. Could indicate actual test device info, such as ip, could test data could come from actual test device,  it could be well adapted to different hardware topology.
-           You could use your own test library to control how to use this feature
+8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
+9. Could indicate actual test device info, such as ip, could test data could come from actual test device,  it could be well adapted to different hardware topology.
+       You could use your own test library to control how to use this feature
 
-	10.How to generate test case:
-		Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
+10.How to generate test case:
+	Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
 
-		robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
+	robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
 		
 		
 ========================================================
