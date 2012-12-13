@@ -47,7 +47,8 @@ Advantage:
    Very flexible, all python related grammar could be  used here
 
 Disadvantage:
-   For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.
+   For tester who totally has no programming experience or weak competence on it, 
+   it is a barrier for them to use this framework and turn their test ideas into test automation case.
 
 Here I would like to introduce this tool by several actual examples
 
@@ -91,12 +92,6 @@ An example of a valid rule line::
 	            return False
 	        if row['file_system'] =="FAT32" and row['size']>32000:
 	            return False
-	
-	        if row['file_system']  in ["FAT", "FAT32"] or (row['file_system'] == "NTFS" and row['cluster_size'] >4096):
-	            if row['compression'] =='ON':
-	                return False
-	            else:
-	                return True
 	        
 	    return True
 
@@ -123,12 +118,13 @@ Which means: Following combination is invalid
 6. The test case name would adapt with actual data combination
 7. The output filename could be indicated
 
-   the output file could be indicated inside model file, or indicated as a command-line argument
+   the output file could be indicated inside model file, or indicated as a command-line argument.
    
-   The output file could be in TXT, HTML,or other valid Robot Case format
+   The output file could be in TXT, HTML,or other valid Robot Case format,but if you need the format to be html, 
+   then you should have Robot installed with version above 2.7.
 
 8. The case step should be a  keyword which has been defined inside Robot Resource file or python test library
-9. Could indicate actual test device info, such as ip, could test data could come from actual test device, 
+9. Could indicate actual test device info, such as ip, then test data could come from actual test device, 
     it could be well adapted to different hardware topology.
     You could use your own test library to control how to use this feature
 
