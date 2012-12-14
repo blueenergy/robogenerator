@@ -522,7 +522,8 @@ test data vectors from there.</p>
 <dt>Advantage:</dt>
 <dd>Very flexible, all python related grammar could be  used here</dd>
 <dt>Disadvantage:</dt>
-<dd>For tester who totally has no programming experience or weak competence on it, it is a barrier for them to use this framework and turn their test ideas into test automation case.</dd>
+<dd>For tester who totally has no programming experience or weak competence on it,
+it is a barrier for them to use this framework and turn their test ideas into test automation case.</dd>
 </dl>
 <p>Here I would like to introduce this tool by several actual examples</p>
 </div>
@@ -566,12 +567,6 @@ def is_valid_combination(row):
         if row['file_system'] ==&quot;FAT32&quot; and row['size']&gt;32000:
             return False
 
-        if row['file_system']  in [&quot;FAT&quot;, &quot;FAT32&quot;] or (row['file_system'] == &quot;NTFS&quot; and row['cluster_size'] &gt;4096):
-            if row['compression'] =='ON':
-                return False
-            else:
-                return True
-
     return True
 </pre>
 <dl class="docutils">
@@ -598,13 +593,14 @@ file_system ==&quot;FAT32&quot; and size&gt;32000;</dd>
 <li><p class="first">The test case name would adapt with actual data combination</p>
 </li>
 <li><p class="first">The output filename could be indicated</p>
-<p>the output file could be indicated inside model file, or indicated as a command-line argument</p>
-<p>The output file could be in TXT, HTML,or other valid Robot Case format</p>
+<p>the output file could be indicated inside model file, or indicated as a command-line argument.</p>
+<p>The output file could be in TXT, HTML,or other valid Robot Case format,but if you need the format to be html,
+then you should have Robot installed with version above 2.7.</p>
 </li>
 <li><p class="first">The case step should be a  keyword which has been defined inside Robot Resource file or python test library</p>
 </li>
 <li><dl class="first docutils">
-<dt>Could indicate actual test device info, such as ip, could test data could come from actual test device,</dt>
+<dt>Could indicate actual test device info, such as ip, then test data could come from actual test device,</dt>
 <dd><p class="first last">it could be well adapted to different hardware topology.
 You could use your own test library to control how to use this feature</p>
 </dd>
@@ -751,16 +747,19 @@ python setup.py install
 <p>After this you should have a commandline tool called 'robogenerator' available.
 See 'robogenerator --help' for commandline tool usage.</p>
 </div>
-<div class="section" id="machine-table-syntax">
-<h1>Machine table syntax</h1>
+<div class="section" id="syntax-introduction">
+<h1>Syntax Introduction</h1>
 <p>Rules can be used to remove variable combinations that should not be used in
-test generation.</p>
-<p>State blocks should be next. You can define which state are the starting state.</p>
+test generation.Actually it is a python function inside which you can define anything you want.</p>
+<dl class="docutils">
+<dt>State blocks are actually some python dictionary which we can used to describe states.</dt>
+<dd>You can define which state are the starting state.</dd>
+</dl>
 <p>This is followed by the Robot Framework steps that should be executed when in that
 state.</p>
 <p>This can be followed by an actions block definition.</p>
-<p>An actions block starts with 'actions' and is followed by one or more action lines.
-In every action line, there would be four part:</p>
+<p>An actions block is actually a key/value pair,the key is 'actions', and the value is actually a list of transition description.
+Each transition is actually a tuple with four arguments.</p>
 <p>1st argument refers to action keyword that would be executed in that transition.
 You could use pure python style or Robot Keyword style.</p>
 <p>2nd argument refers to argument that would be used with action keyword.</p>
@@ -783,11 +782,21 @@ state depend on the message it has received.For example:</p>
 * if has received message REJECT, then it will switch to 'idle state'.
 * if it has received message CANCEL, then it will switch to 'cancel state'.
 </pre>
+</div>
+<div class="section" id="miscellaneous">
+<h1>Miscellaneous</h1>
+<p>In state-machine based case generator, if you need to use 'ShortestPath' strategy, then probably you need to re-compile a java library.</p>
+<p>1.find where the robogenerator is installed</p>
+<ol class="arabic simple" start="2">
+<li>change to src/graph_algorithm</li>
+</ol>
+<p>3.javac CPP.java</p>
+<p>You need JDK installed to complete above operation. The reason why you need to do this is because a java algorithm is called during case generation.</p>
 </div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2012-12-13 01:55 UTC.
+Generated on: 2012-12-14 10:45 UTC.
 
 </div>
 </body>

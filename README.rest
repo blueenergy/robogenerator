@@ -259,17 +259,18 @@ See 'robogenerator --help' for commandline tool usage.
 
 
 ====================
-Machine table syntax
+Syntax Introduction
 ====================
 
 
 
 Rules can be used to remove variable combinations that should not be used in
-test generation.
+test generation.Actually it is a python function inside which you can define anything you want.
 
 
 
-State blocks should be next. You can define which state are the starting state.
+State blocks are actually some python dictionary which we can used to describe states.
+ You can define which state are the starting state.
 
 
 This is followed by the Robot Framework steps that should be executed when in that
@@ -277,8 +278,8 @@ state.
 
 This can be followed by an actions block definition.
 
-An actions block starts with 'actions' and is followed by one or more action lines.
-In every action line, there would be four part:
+An actions block is actually a key/value pair,the key is 'actions', and the value is actually a list of transition description. 
+Each transition is actually a tuple with four arguments.
 
 1st argument refers to action keyword that would be executed in that transition.
 You could use pure python style or Robot Keyword style.
@@ -306,3 +307,19 @@ state depend on the message it has received.For example::
  * if it has received message 200, then it will switch to 'ready state'.
  * if has received message REJECT, then it will switch to 'idle state'.
  * if it has received message CANCEL, then it will switch to 'cancel state'.
+ 
+ 
+====================
+Miscellaneous 
+====================
+
+In state-machine based case generator, if you need to use 'ShortestPath' strategy, then probably you need to re-compile a java library.
+
+1.find where the robogenerator is installed
+
+2. change to src/graph_algorithm
+
+3.javac CPP.java 
+
+You need JDK installed to complete above operation. The reason why you need to do this is because a java algorithm is called during case generation.
+
