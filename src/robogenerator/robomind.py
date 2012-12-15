@@ -46,14 +46,14 @@ state.setResultsName('state')
 
 
 states_template = OneOrMore(state).setResultsName('states')
-html = startBody+states+endBody
+html = startBody+states_template+endBody
 
 
 
 def main():
     import argparse
     global title,states
-    parser = argparse.ArgumentParser(description='RoboGenerator 0.2 - a test data generator for Robot Framework',
+    parser = argparse.ArgumentParser(description='Robomind 0.1 - a too to convert xmind html file to Robot Cases',
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('input', type=str, help='input file')
     '''
@@ -70,6 +70,7 @@ def main():
     with open(input,'r') as f:
         html_doc= f.read()
 
+    html_doc = html_doc.replace(',',' ')
     for srvrtokens,startloc,endloc in title_template.scanString(html_doc):
         title = srvrtokens[0]
         
@@ -88,10 +89,11 @@ def main():
         for state in states:
             for action in state[1]:
                 f.write('Test%s\n'%index)
-                f.write('  %s\n'%state[0])
-                f.write('  %s\n'%action[0])
+                f.write('  Given %s\n'%state[0])
+                f.write('  When %s\n'%action[0])
                 if action[1]:
-                    f.write('  %s\n'%action[1])
+                    f.write('  Then %s\n'%action[1])
+                index +=1
 
     from tidy import tidy_cli
 
