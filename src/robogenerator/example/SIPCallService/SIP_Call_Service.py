@@ -57,7 +57,7 @@ state_graph = [idle_state,init_state,calling_state,terminating_state,cancel_stat
 
 
 accepting = state_graph
-initial = 'idle_state'
+initial = state_graph[0]['name']
 
 #graph = get_all_possible_transitions(state_graph)
 
