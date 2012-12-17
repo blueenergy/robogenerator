@@ -64,7 +64,10 @@ def main():
     
     input = args.input
     #output = args.output
-    output_filename = input.split('.')[0]+'_'+'case'
+    if args.output:
+        output_filename = args.output
+    else:
+        output_filename = input.split('.')[0]+'_'+'case'
     raw_output = output_filename + '.' + 'txt'
     
     with open(input,'r') as f:

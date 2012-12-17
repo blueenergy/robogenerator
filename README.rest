@@ -216,25 +216,17 @@ No2: using model-based testing with finite state machine
         robogenerator SIP_Call_Service.py 每-strategy ActionNameCoverage 每t 1 每n  100 每o show.html 
 
 ==================================================================
-Other extended Function (Could generate State-machine based graph)
+How to generate State-machine based graph from Models
+==================================================================
+.. include:: robograph.rest
+ 
+
+==================================================================
+How to generate Case from Xmind Maps
 ==================================================================
 
-  If you have installed tool GraphViz, http://www.graphviz.org/Download..php 
-  then you could use robograph (a tool inside robogenerator)  to generate state-activity graph by your state-machine model.
-
-   1. At first
-
-       robograph  -l name SIP_Call_Service    # without .py suffix, only show action name which will cause the transition to happen
-
-      then there will be a file SIP_Call_Service.dot in current directory
-
-    It will show following pictureㄩ
-	.. image:: src/robogenerator/example/SIPCallService/SIP_Call_Service.png
+.. include:: robomind.rest
 	
-	Also you use Gvedit.exe to open file  SIP_Call_Service.dot, and edit the  .dot file with yourself.
-	
-    From the picture we could see, there are a lot of  possible sequence to execute all possible test case, 
-    if we don＊t have tool help, it will be difficult for us to design test procedure which could balance test cost and test coverage.
 
 ============
 Installation
