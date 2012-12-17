@@ -1,0 +1,25 @@
+Sometimes testers may have a lot of testing ideas,but may met difficulties when try to automate them.
+  Or during the progress of automation, tester may already get lost when dealing with so many technical details.
+  So I am thinking if there are a tool which could turn our ideas into test automation case, that might can help to solve the problem.
+  That is how robomind ideas come from.
+  
+
+   1. At first, we can draw test design mind map in xmind, just like following:
+   
+   .. image:: src/robogenerator/example/xmind/TestAccountLogin.jpg
+   
+   2. Then Export it into html files:
+   
+   .. image:: src/robogenerator/example/xmind/export_to_html_help.png
+   
+   3. The tip is if we use Robot Keyword to edit our xmind map,
+    
+    it will be possible to convert the Xmind map into exectuable Robot Case.
+    
+   Command is: 
+      
+      robomind account_login.html -o account_login_case.html
+
+   Here is the output:
+   
+    .. image:: src/robogenerator/example/xmind/account_login_case_picture.png
