@@ -19,6 +19,13 @@ def get_max_comb_number( arr, n ):
     return total
     
     
+def get_max_comb_number_from_dict( dict, n ):
+    items = [len(x) for x in dict.values()]
+    print items
+    f = lambda x,y:x*y
+    total = sum([ reduce(f, z) for z in xuniqueCombinations( items, n) ])
+    return total
+    
 class all_pairs2:
     def __iter__( self ):
         return self
@@ -38,7 +45,7 @@ class all_pairs2:
         self.__filter_func = filter_func
         self.__n = n
         self.__pairs = pairs_storage.pairs_storage(n)
-        self.__max_unique_pairs_expected = get_max_comb_number( options, n )
+        self.__max_unique_pairs_expected = get_max_comb_number_from_dict( options, n )
         self.__working_arr = []
         '''
         for i in range( len( options )):
