@@ -2,7 +2,7 @@ import metacomm.combinatorics.all_pairs2
 all_pairs = metacomm.combinatorics.all_pairs2.all_pairs2
 
 
-def get_all_pairs(parameters,validity_check_function='',previously_tested=[[]]):
+def get_all_pairs(parameters,validity_check_function=lambda t:True,previously_tested=[[]]):
     attrs = parameters.keys()
     print parameters
     pair_wise = all_pairs( parameters,validity_check_function,previously_tested)
