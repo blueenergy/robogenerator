@@ -1,2 +1,2 @@
 @echo off
-python -m robogenerator.runner %*
+python -m robogenerator.robogenerator %*
