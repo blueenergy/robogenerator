@@ -56,16 +56,16 @@ def main():
     parser = argparse.ArgumentParser(description='Robomind 0.1 - a too to convert xmind html file to Robot Cases',
                                      formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument('input', type=str, help='input file')
-    '''
+
     parser.add_argument('--output', '-o', type=str, default=None,
                         help='output file (default is input file with NEW prefix)')
-    '''
+
     args = parser.parse_args()
     
     input = args.input
     #output = args.output
     if args.output:
-        output_filename = args.output
+        output_filename = args.output.split('.')[0]
     else:
         output_filename = input.split('.')[0]+'_'+'case'
     raw_output = output_filename + '.' + 'txt'
