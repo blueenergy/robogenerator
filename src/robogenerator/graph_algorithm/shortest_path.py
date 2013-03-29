@@ -63,13 +63,7 @@ def compute_cpp_optimal_route(state_name_list,all_possible_transitions):
 
     os.chdir(os.path.dirname(__file__))
     java_version = get_current_java_version()
-    
-    files_to_copied = glob.glob('%s/*.class'%java_version)
-    for class_file in files_to_copied:
-
-        base_name = os.path.basename(class_file)
-        shutil.copyfile(class_file, base_name)
-        
+    os.chdir(java_version)
     command_args = ['java','CPP']
     command_args.extend(arcs)
     #p = subprocess.Popen(command_args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
