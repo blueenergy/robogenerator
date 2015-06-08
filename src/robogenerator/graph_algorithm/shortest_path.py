@@ -43,7 +43,8 @@ def get_current_java_version():
     elif java_version_info.count('1.6') > 0:
         java_version = '1.6'
     else:
-        raise Exception, 'java seems not installed, pls install java at first to run this algorithm'
+        java_version = '1.7'
+        #raise Exception, 'java seems not installed, pls install java at first to run this algorithm'
     return java_version
 
 def compute_cpp_optimal_route(state_name_list,all_possible_transitions):
