@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.9.1: http://docutils.sourceforge.net/" />
-<title></title>
+<meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
+<title></title>
 <style type="text/css">
 
 /* Robot Framework User Guide Style Sheet
@@ -478,12 +478,12 @@ div.contents li {
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
 
-</style>
+</style>
 </head>
 <body>
-<div class="document">
-
-
+<div class="document">
+
+
 <div class="section" id="robogenerator">
 <h1>RoboGenerator</h1>
 <p>A test data generator for <a class="reference external" href="http://www.robotframework.org">Robot Framework</a>.</p>
@@ -610,13 +610,12 @@ You could use your own test library to control how to use this feature</p>
 <dl class="docutils">
 <dt>10.How to generate test case:</dt>
 <dd><p class="first">Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html</p>
-<p class="last">robogenerator  - g random –t 10 –o show.html –ip <em>.</em>.*.*  create_and_delete_volume_test.py</p>
+<p class="last">robogenerator  - g random -t 10 -o show.html -ip <em>.</em>.*.*  create_and_delete_volume_test.py</p>
 </dd>
 </dl>
 </div>
 <div class="section" id="no2-using-model-based-testing-with-finite-state-machine">
 <h1>No2: using model-based testing with finite state machine</h1>
-<blockquote>
 <blockquote>
 <p>1. How to describe our MBT test model
 Here is another example machine (using model-based testing with finite state machine):</p>
@@ -684,10 +683,10 @@ suite_teardown='Disconnect from SUT'
 <ol class="arabic" start="2">
 <li><dl class="first docutils">
 <dt>different strategy to test</dt>
-<dd><p class="first last">ShortestPath  ----- Generate case according to China Postman graph algorithm, which could balance test feedback cycle and test coverage
-StateCoverage ------- When need to select next step, it will select the minimum state as their next State
-ActionNameCoverage ------- Select least covered Action Name To test
-DynamicRandom ------------- Randomly select next State but try to avoid already tested</p>
+<dd><p class="first">ShortestPath  ----- Generate case according to China Postman graph algorithm, which could balance test feedback cycle and test coverage</p>
+<p>StateCoverage ------- When need to select next step, it will select the minimum state as their next State</p>
+<p>ActionNameCoverage ------- Select least covered Action Name To test</p>
+<p class="last">DynamicRandom ------------- Randomly select next State but try to avoid already tested</p>
 </dd>
 </dl>
 </li>
@@ -696,13 +695,10 @@ DynamicRandom ------------- Randomly select next State but try to avoid already 
 <li><p class="first">Examples</p>
 </li>
 </ol>
-</blockquote>
-<dl class="docutils">
-<dt>generate test case with shortest path cost,assume each step has same weight,and output to show.html</dt>
-<dd>robogenerator SIP_Call_Service.py –-strategy ShortestPath –o show.html</dd>
-<dt>generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100</dt>
-<dd>robogenerator SIP_Call_Service.py –-strategy ActionNameCoverage –t 1 –n  100 –o show.html</dd>
-</dl>
+<p>generate test case with shortest path cost,assume each step has same weight,and output to show.html</p>
+<p>robogenerator SIP_Call_Service.py --strategy ShortestPath -o show.html</p>
+<p>generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100</p>
+<p>robogenerator SIP_Call_Service.py --strategy ActionNameCoverage -t 1 -n  100 -o show.html</p>
 </blockquote>
 </div>
 <div class="section" id="how-to-generate-state-machine-based-graph-from-models">
@@ -827,12 +823,12 @@ state depend on the message it has received.For example:</p>
 </ol>
 <p>3.javac CPP.java</p>
 <p>You need JDK installed to complete above operation. The reason why you need to do this is because a java algorithm is called during case generation.</p>
-</div>
+</div>
 </div>
 <div class="footer">
 <hr class="footer" />
-Generated on: 2012-12-17 14:01 UTC.
+Generated on: 2015-06-09 07:06 UTC.
 
 </div>
 </body>
-</html>
+</html>

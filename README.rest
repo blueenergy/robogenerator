@@ -131,7 +131,7 @@ Which means: Following combination is invalid
 10.How to generate test case:
 	Assume the model filename is create_and_delete_volume_test.py , and randomly generate 10 test case, output file is show.html
 
-	robogenerator  - g random 每t 10 每o show.html 每ip *.*.*.*  create_and_delete_volume_test.py
+	robogenerator  - g random -t 10 -o show.html -ip *.*.*.*  create_and_delete_volume_test.py
 		
 		
 ========================================================
@@ -202,18 +202,24 @@ No2: using model-based testing with finite state machine
 	
 	2. different strategy to test
 	    ShortestPath  ----- Generate case according to China Postman graph algorithm, which could balance test feedback cycle and test coverage 
+		
 	    StateCoverage ------- When need to select next step, it will select the minimum state as their next State
+		
 	    ActionNameCoverage ------- Select least covered Action Name To test
+		
 	    DynamicRandom ------------- Randomly select next State but try to avoid already tested
  
 	3. Could indicate how many steps inside one test case
  
 	4. Examples
     
-     generate test case with shortest path cost,assume each step has same weight,and output to show.html
-        robogenerator SIP_Call_Service.py 每-strategy ShortestPath 每o show.html 
-     generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100
-        robogenerator SIP_Call_Service.py 每-strategy ActionNameCoverage 每t 1 每n  100 每o show.html 
+        generate test case with shortest path cost,assume each step has same weight,and output to show.html
+		
+        robogenerator SIP_Call_Service.py --strategy ShortestPath -o show.html
+		
+        generate test case with ActionName coverage, and generate 1 case, each case will limit test steps to 100
+		
+        robogenerator SIP_Call_Service.py --strategy ActionNameCoverage -t 1 -n  100 -o show.html 
 
 ==================================================================
 How to generate State-machine based graph from Models

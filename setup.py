@@ -24,7 +24,7 @@ SCRIPTS = [join('src', 'bin', s) for s in SCRIPTS]
 
 SCRIPTS += [s+'.bat' for s in SCRIPTS]
 setup(name='robogenerator',
-      version='0.3.6',
+      version='0.3.7',
       description='Case generator for Robot',
       author='shuyolin',
       author_email='shuyong.y.lin@nsn.com',
@@ -36,7 +36,7 @@ setup(name='robogenerator',
                 'robogenerator.example.Volume_create_delete_function',
                 'robogenerator.example.SIPCallService',
                 'robogenerator.example.xmind',
-				'robogenerator.graph','robogenerator.graph_algorithm','robogenerator.strategy'],
+				'robogenerator.graph','robogenerator.graph_algorithm','robogenerator.graph_algorithm.16','robogenerator.graph_algorithm.17','robogenerator.strategy'],
 	  scripts = SCRIPTS,
       package_data = {
         # If any package contains *.txt or *.rst files, include them:
