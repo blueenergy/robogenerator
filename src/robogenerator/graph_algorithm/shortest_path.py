@@ -39,11 +39,11 @@ def get_current_java_version():
     java_version_info = os.getenv('JAVA_HOME','')
 
     if java_version_info.count('1.7') > 0:
-        java_version = '1.7'
+        java_version = '17'
     elif java_version_info.count('1.6') > 0:
-        java_version = '1.6'
+        java_version = '16'
     else:
-        java_version = '1.7'
+        java_version = '17'
         #raise Exception, 'java seems not installed, pls install java at first to run this algorithm'
     return java_version
 
@@ -68,6 +68,7 @@ def compute_cpp_optimal_route(state_name_list,all_possible_transitions):
     command_args = ['java','CPP']
     command_args.extend(arcs)
     #p = subprocess.Popen(command_args, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    print list2cmdline(command_args)
     res = os.popen(list2cmdline(command_args))
     optimal_route =[]
     print '*******************'
