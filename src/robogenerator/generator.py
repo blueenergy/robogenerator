@@ -12,11 +12,16 @@ class CaseGenerator(object):
     def write_case_header(self,out):
         print self.case_instance.documentation
         out.write('*** Settings ***\n')
-        out.write('''Documentation  %s\n''' % self.case_instance.documentation)
-        out.write('Suite Setup  %s\n' % self.case_instance.suite_setup)
-        out.write('Suite Teardown  %s\n' % self.case_instance.suite_teardown)
-        out.write('Test Setup  %s\n' % self.case_instance.test_setup)
-        out.write('Test teardown  %s\n' % self.case_instance.test_teardown)
+        if self.case_instance.documentation:
+            out.write('''Documentation  %s\n''' % self.case_instance.documentation)
+        if self.case_instance.suite_setup:
+            out.write('Suite Setup  %s\n' % self.case_instance.suite_setup)
+        if self.case_instance.suite_teardown:
+            out.write('Suite Teardown  %s\n' % self.case_instance.suite_teardown)
+        if self.case_instance.test_setup:
+            out.write('Test Setup  %s\n' % self.case_instance.test_setup)
+        if self.case_instance.test_teardown:
+            out.write('Test teardown  %s\n' % self.case_instance.test_teardown)
         if self.case_instance.force_tags:
             if self.data_instance.max_combinations:
                 kwargs = self.data_instance.max_combinations[0]
@@ -24,8 +29,10 @@ class CaseGenerator(object):
             else:
                 force_tags = self.case_instance.force_tags
             out.write('Force Tags  %s\n' % force_tags)
-        out.write('Resource  %s\n' % self.case_instance.resource)
-        out.write('Library  %s\n' % self.case_instance.library)
+        if self.case_instance.resource:
+            out.write('Resource  %s\n' % self.case_instance.resource)
+        if self.case_instance.library:
+            out.write('Library  %s\n' % self.case_instance.library)
         
     def write_case_column_header(self,out,case_step_template,style):
 

@@ -159,7 +159,7 @@ def main():
             config.runstarts =[]
             config.tested_transitions = casegenerator.get_tested_transitions()
             generate_state_machine_graph(config,config.filename)
-            import Image
+            from PIL import Image
             im = Image.open('%s.png'%config.filename)
             im.show()
     elif parameters:

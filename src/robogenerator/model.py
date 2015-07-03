@@ -205,7 +205,7 @@ class Action(tuple):
 class CaseModel(object):
     def __init__(self,config):
         self.parameters = getattr(config,'parameters',None)
-        self.documentation = config.documentation
+        self.documentation = getattr(config,'documentation',None)
         self.get_case_hearder_info(config)
         self.case_name_template = config.case_name_template
         self.subcase_tag_template = getattr(config,'subcase_tag_template',None)
